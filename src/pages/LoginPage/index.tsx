@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import RegistrationForm from '../../components/RegistrationForm';
+import LoginForm from '../../components/LoginForm';
 import { CtaButton, HeadingH1, LayoutWrapper, Paragraph } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import tgcClub from '../../images/tgc-club.png';
 
 const StyledRegistrationPage = styled.div`
-  min-height: 1625px;
+  min-height: 1100px;
   background-color: #000;
   background: url(${city}) bottom, url(${playerBackground});
   background-size: contain, cover;
@@ -49,20 +49,20 @@ const RegistrationPageBgImage = styled.img`
   top: 136px;
 `;
 
-const RegistrationPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
     <StyledRegistrationPage>
       <RegistrationPageWrapper>
         <ButtonWrapper>
-          <Link to='/login'><CtaButton>Sign In</CtaButton></Link>
+          <Link to='/registration'><CtaButton>Join TGC Club</CtaButton></Link>
         </ButtonWrapper>
         <RegistrationPageBgImage src={tgcClub} alt='tgc club background' />
-        <RegistrationPageHeader>Join TGC Club</RegistrationPageHeader>
-        <RegistrationPageLinks>Have an account? <Link to='/login'>Sign in now</Link></RegistrationPageLinks>
-        <RegistrationForm />
+        <RegistrationPageHeader>Log In</RegistrationPageHeader>
+        <RegistrationPageLinks>Need an account? <Link to='/registration'>Sign up now</Link></RegistrationPageLinks>
+        <LoginForm />
       </RegistrationPageWrapper>
     </StyledRegistrationPage>
   );
 }
 
-export default RegistrationPage;
+export default LoginPage;

@@ -19,7 +19,7 @@ const TournamentRow = styled.div`
 
 const TournamentCell = styled.div`
   color: #817A84;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
@@ -62,7 +62,7 @@ const TournamentName = styled(Paragraph)`
   color: #E9DBF0;
   font-weight: 800;
   margin: 0 0 6px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
 `;
 
 const StatusWrapper = styled.div`
@@ -74,7 +74,7 @@ const TournamentDate = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
   color: #817A84;
   margin: 0;
 `;
@@ -90,7 +90,7 @@ const StatusBadge = styled.div`
   font-size: 8px;
   line-height: 10px;
   text-transform: uppercase;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
   margin-right: 7px;
 `;
 
@@ -133,7 +133,7 @@ const TournamentTimeline = styled.span`
   font-size: 10px;
   line-height: 12px;
   margin-left: 11px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
 `;
 
 const TournamentItem = ({

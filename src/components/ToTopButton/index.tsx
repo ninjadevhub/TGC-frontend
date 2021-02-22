@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import squaredArrow from '../../images/canada-flag.svg';
+import backToTop from '../../images/back-to-top.svg';
 
 const ArrowButton = styled.img`
   position: fixed; 
-  width: 20px;
+  width: 16px;
+  height: 20px;
   right: 24%;
   bottom: 320px;
-  align-items: center;
-  height: 20px;
-  justify-content: center;
   z-index: 1000;
   cursor: pointer;
-  transition: opacity 0.4s;
-  opacity: 0.5;
-  background: url(${squaredArrow});
 `;
 
 const ToTopButton = () =>{
@@ -36,7 +31,7 @@ const ToTopButton = () =>{
   window.addEventListener('scroll', checkScrollTop)
 
   return (
-        <ArrowButton className="scrollTop" onClick={scrollTop} style={{height: 40, display: showScroll ? 'flex' : 'none'}}/>
+      <ArrowButton src={backToTop} onClick={scrollTop} style={{display: showScroll ? 'flex' : 'none'}} />
   );
 }
   

@@ -44,7 +44,7 @@ const LabeledCheckbox = styled.div`
     label {
       position: relative;
       color: #fff;
-      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'San Francisco', Arial, sans-serif;
 
       &::before {
         content: '';
@@ -77,18 +77,18 @@ const RegistrationFormButton = styled(RegisterButton)`
 const RegistrationForm: React.FC = () => {
   return (
     <RegistrationFormWrapper>
-      <InputBlock placeholder="Full Name" />
-      <InputBlock placeholder="Email" type="email" />
-      <InputBlock placeholder="Password" type="password" hasError error='Your password must contain at least one uppercase, or capital, letter' />
-      <InputBlock placeholder="Confirm Password" type="password" />
-      <InputBlock placeholder="Country" />
+      <InputBlock placeholder='Full Name' />
+      <InputBlock placeholder='Email' type='email' />
+      <InputBlock placeholder='Password' type='password' hasError error='Your password must contain at least one uppercase, or capital, letter' />
+      <InputBlock placeholder='Confirm Password' type='password' />
+      <InputBlock placeholder='Country' />
       <DateOfBirthBlock>
-        <InputBlock placeholder="Birth Date" />
-        <InputBlock placeholder="Birth Month" />
-        <InputBlock placeholder="Birth Year" />
+        <InputBlock placeholder='Birth Date' />
+        <InputBlock placeholder='Birth Month' />
+        <InputBlock placeholder='Birth Year' />
       </DateOfBirthBlock>
       <LabeledCheckbox>
-        <InputBlock label="I agree to the Terms of Use and I have read and acknowledge the Privacy Policy." type="checkbox" id="checkTerms" />
+        <InputBlock label='I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.' type='checkbox' id='checkTerms' />
       </LabeledCheckbox>
       <RegistrationFormButton>Join Now</RegistrationFormButton>
     </RegistrationFormWrapper>

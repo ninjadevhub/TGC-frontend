@@ -30,7 +30,7 @@ const TournamentTableHead = styled.div`
 const TournamentTableBody = styled.div``;
 
 const TournamentTableHeadItem = styled.div`
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;

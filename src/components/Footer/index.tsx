@@ -80,14 +80,14 @@ const FooterNavTitle = styled.p`
   font-weight: 600;
   line-height: 14px;
   text-transform: capitalize;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
 `;
 
 const FooterNavLink = styled.a`
   margin: 10px 0 0;
   color: #aaa;
   text-decoration: none;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
 `;
 
 const FooterSeparator = styled.span`

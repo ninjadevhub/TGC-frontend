@@ -34,7 +34,8 @@ const FeaturesBannerText = styled.p`
   font-size: 12px;
   line-height: 16px;
   padding: 13px 0;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
+  font-weight: 700;
 `;
 
 const FeaturesBanner = ({ textRight = false, banner, title, text }: IFeaturesBanner) => {

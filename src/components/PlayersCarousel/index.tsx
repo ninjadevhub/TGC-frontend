@@ -90,7 +90,7 @@ const DescriptionText = styled(Paragraph)`
   max-width: 84%;
   margin: 25px 0 53px;
   color: #878787;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
 `;
 
 const PlayerFeaturesBlock = styled.div`
@@ -112,7 +112,7 @@ const PlayerFeature = styled.p`
   line-height: 17px;
   margin: 0;
   color: #878787;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'San Francisco', Arial, sans-serif;
   text-align: center;
 `;
 

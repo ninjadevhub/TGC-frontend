@@ -5,6 +5,7 @@ import warzoneLogo from '../../images/warzone-logo.png';
 import tournaments from '../../images/tournaments.png';
 import city from '../../images/city.png';
 import bannerBackground from '../../images/banner-bg.jpg';
+import { Link } from 'react-router-dom';
 
 const StyledMainBanner = styled.div`
   min-height: 1150px;
@@ -23,6 +24,10 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   margin-bottom: 37px;
+
+  a {
+    line-height: 52px;
+  }
 `;
 
 const JoinTCGButton = styled(CtaButton)`
@@ -63,8 +68,8 @@ const MainBanner: React.FC = () => {
     <StyledMainBanner>
       <MainBannerWrapper>
           <ButtonWrapper>
-            <JoinTCGButton>Join TGC Club</JoinTCGButton>
-            <SimpleButton>Sign In</SimpleButton>
+            <Link to='/registration'><JoinTCGButton>Join TGC Club</JoinTCGButton></Link>
+            <Link to='/login'><SimpleButton>Sign In</SimpleButton></Link>
           </ButtonWrapper>
           <BannerTextWrapper>
             <img src={warzoneLogo} alt="warzone logo" />

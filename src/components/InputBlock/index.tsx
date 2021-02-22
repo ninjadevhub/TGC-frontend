@@ -4,7 +4,7 @@ import { Paragraph } from '../../styles/mixins';
 import { IInputBlock } from './types';
 
 const StyledInputBlock = styled.div`
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'San Francisco', Arial, sans-serif;
     position: relative;
 `;
 

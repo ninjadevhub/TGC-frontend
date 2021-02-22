@@ -17,6 +17,10 @@ export const SimpleButton = styled.button`
   border: none;
   font-size: 16px;
   line-height: 19px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CtaButton = styled.button`
