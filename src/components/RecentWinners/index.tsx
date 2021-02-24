@@ -15,6 +15,10 @@ const RecentWinnersWrapper = styled(LayoutWrapper)`
   flex-direction: column;
 `;
 
+const RecentWinnersPayment = styled.div`
+  transform: translateY(-70px);
+`;
+
 const WinnersBlock = styled.div``;
 
 const WinnersTitle = styled(HeadingH2)`
@@ -33,13 +37,15 @@ const RecentWinners: React.FC = () => {
   return (
     <StyledRecentWinners>
       <RecentWinnersWrapper>
-          <TotalPayment />
-          <WinnersBlock>
-            <WinnersTitle>Recent Winners</WinnersTitle>
-            <WinnersList>
-              {mockedWinners.map(({ id, place, winners }: IPlace) => <WinnerCard key={id} place={place} winners={winners} />)}
-            </WinnersList>
-          </WinnersBlock>
+        <RecentWinnersPayment>
+            <TotalPayment title="TGC has paid our to gamers" sum="$ 57,127" />
+        </RecentWinnersPayment>
+        <WinnersBlock>
+          <WinnersTitle>Recent Winners</WinnersTitle>
+          <WinnersList>
+            {mockedWinners.map(({ id, place, winners }: IPlace) => <WinnerCard key={id} place={place} winners={winners} />)}
+          </WinnersList>
+        </WinnersBlock>
       </RecentWinnersWrapper>
     </StyledRecentWinners>
   );

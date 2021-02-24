@@ -50,6 +50,7 @@ export const Paragraph = styled.p`
   font-size: 14px;
   line-height: 17px;
   margin: 13px 0;
+  color: #fff;
 `;
 
 export const HeadingH1 = styled.h1`

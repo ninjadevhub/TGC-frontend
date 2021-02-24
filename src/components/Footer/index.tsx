@@ -6,9 +6,9 @@ import facebookLogo from '../../images/facebook-logo.svg';
 import twitterLogo from '../../images/twitter-logo.svg';
 import linkedinLogo from '../../images/linkedin-logo.svg';
 import sslSecureLogo from '../../images/ssl-secure.svg';
-import visaLogo from '../../images/visa.svg';
-import mastercardLogo from '../../images/mastercard.svg';
-import amexLogo from '../../images/amex.svg';
+import visaLogo from '../../images/visa-white.svg';
+import mastercardLogo from '../../images/mastercard-white.svg';
+import amexLogo from '../../images/amex-white.svg';
 import trustedGoogleLogo from '../../images/trusted-google.svg';
 
 const StyledFeaturesBanner = styled.div`

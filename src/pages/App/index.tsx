@@ -10,6 +10,7 @@ import ToTopButton from '../../components/ToTopButton';
 import Homepage from '../Homepage';
 import RegistrationPage from '../RegistrationPage';
 import LoginPage from '../LoginPage';
+import PaymentPage from '../PaymentPage';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
       </Route>
       <Route exact path="/login">
         <LoginPage />
+      </Route>
+      <Route exact path="/payment">
+        <PaymentPage />
       </Route>
       <Redirect to="/404" />
     </Switch>
