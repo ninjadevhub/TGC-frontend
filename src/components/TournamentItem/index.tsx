@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { CtaButton, Paragraph } from '../../styles/mixins';
-import { ITableRow } from '../Tournament/types';
+import { ITableRow } from '../TournamentTable/types';
 import gameModeIcon from '../../images/game-mode.svg';
-import { IStatus } from '../Tournament/types';
+import { IStatus } from '../TournamentTable/types';
 import australiaFlag from '../../images/australia-flag-square.svg';
 import trophyFlag from '../../images/trophy-transparent.svg';
 import rectangular from '../../images/rectangular.svg';
@@ -110,8 +110,11 @@ const TournamentTimelineButton = styled(CtaButton)<IStatus>`
   padding: 10px 11px;
   font-size: 12px;
   line-height: 14px;
-  background-color: ${({ status }) => status === 'closed' || status === 'completed' ? '#232323' : status === 'live' ? '#C18A23' : '#8D1C1C'};
-  color: ${({ status, showIcons }) => showIcons ? '#fff' : status === 'closed' || status === 'completed' ? '#656565' : '#fff'};
+  background-color: ${({ status }) => status === 'closed' || status === 'completed' ? '#232323' :
+          status === 'live' ? '#C18A23' : status === 'registered' ? '#BABABA' : '#8D1C1C'};
+  color: ${({ status, showIcons }) => showIcons ? '#fff' : status === 'closed' || status === 'completed' ? '#656565' :
+          status === 'registered' ? '#343434' : '#fff'};
+  border-radius: 4px;
 
   &::before {
     content: ${({ showIcons }) => showIcons ? `url(${trophyFlag})` : 'none'};

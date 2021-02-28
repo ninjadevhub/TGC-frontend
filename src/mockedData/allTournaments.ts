@@ -1,22 +1,22 @@
-import { IMockedTableData } from './types';
+import { IMockedTableData } from '../components/TournamentTable/types';
 
-export const mockedTableData: IMockedTableData = {
-  tableHead: ['game mode', 'Tournament date', 'prize pool', 'Team size', 'registration'],
+export const allTournamentsData: IMockedTableData = {
+  tableHead: ['divition', 'Tournament date', 'length', 'price', 'registration'],
   tableBody: [
     {
       id: 0,
       gameMode: 'default',
-      status: 'open',
+      status: 'registered',
       tournament: {
-        name: 'Skill Tournament #57',
-        label: 'Open',
+        name: 'Skill TournamentTable #53',
+        label: 'Closed',
         date: 'December 15, 2020'
       },
-      prize: '$3,000',
+      prize: '$3,500',
       teamSize: null,
       registrationInfo: {
-        status: 'Register',
-        timeline: 'End in 5h'
+        status: 'Registered',
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -24,7 +24,7 @@ export const mockedTableData: IMockedTableData = {
       gameMode: 'default',
       status: 'open',
       tournament: {
-        name: 'Skill Tournament #57',
+        name: 'Skill TournamentTable #57',
         label: 'Open',
         date: 'December 15, 2020'
       },
@@ -32,7 +32,7 @@ export const mockedTableData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: 'Ends in 2 days'
+        timeline: ''
       }
     },
     {
@@ -40,133 +40,128 @@ export const mockedTableData: IMockedTableData = {
       gameMode: 'default',
       status: 'closed',
       tournament: {
-        name: 'Skill Tournament #57',
+        name: 'Skill TournamentTable #57',
         label: 'Open',
         date: 'December 15, 2020'
       },
       prize: '$800',
       teamSize: 146,
       registrationInfo: {
-        status: 'Registration Closed',
-        timeline: 'Ends in 2 days'
+        status: 'Full',
+        timeline: ''
       }
     },
     {
       id: 3,
       gameMode: 'default',
-      status: 'completed',
+      status: 'open',
       tournament: {
-        name: 'Microsoft Sponsored Tour #2',
+        name: 'Skill TournamentTable #57',
         label: 'Open',
         date: 'December 15, 2020'
       },
-      prize: '$800',
+      prize: '$3,000',
       teamSize: null,
       registrationInfo: {
-        status: 'Completed',
-        timeline: 'Ends in 2 days'
+        status: 'Register',
+        timeline: ''
       }
     },
     {
       id: 4,
       gameMode: 'default',
-      status: 'live',
+      status: 'open',
       tournament: {
-        name: 'Skill Tournament #57',
+        name: 'Skill TournamentTable #57',
         label: 'Open',
+        date: 'December 15, 2020'
+      },
+      prize: '$3,000',
+      teamSize: null,
+      registrationInfo: {
+        status: 'Register',
+        timeline: ''
+      }
+    },
+    {
+      id: 5,
+      gameMode: 'default',
+      status: 'open',
+      tournament: {
+        name: 'Skill TournamentTable #57',
+        label: 'Open',
+        date: 'December 15, 2020'
+      },
+      prize: '$3,000',
+      teamSize: null,
+      registrationInfo: {
+        status: 'Register',
+        timeline: ''
+      }
+    },
+    {
+      id: 6,
+      gameMode: 'default',
+      status: 'open',
+      tournament: {
+        name: 'Skill TournamentTable #57',
+        label: 'Open',
+        date: 'December 15, 2020'
+      },
+      prize: '$3,000',
+      teamSize: null,
+      registrationInfo: {
+        status: 'Register',
+        timeline: ''
+      }
+    },
+    {
+      id: 7,
+      gameMode: 'default',
+      status: 'closed',
+      tournament: {
+        name: 'Microsoft Sponsored Tour #2',
+        label: 'Proposed',
         date: 'December 15, 2020'
       },
       prize: '$800',
       teamSize: null,
       registrationInfo: {
-        status: 'Live Scoring',
-        timeline: 'Ends in 2 days'
+        status: 'Open soon',
+        timeline: ''
       }
     },
     {
-      id: 5,
+      id: 8,
       gameMode: 'default',
       status: 'closed',
       tournament: {
-        name: 'Skill Tournament #53',
-        label: 'Open',
+        name: 'Microsoft Sponsored Tour #2',
+        label: 'Proposed',
         date: 'December 15, 2020'
       },
-      prize: '$3,500',
+      prize: '$800',
       teamSize: null,
       registrationInfo: {
-        status: 'Cerm',
-        showIcons: true,
-        timeline: 'Ends in 2 days'
+        status: 'Open soon',
+        timeline: ''
       }
     },
     {
-      id: 5,
+      id: 9,
       gameMode: 'default',
       status: 'closed',
       tournament: {
-        name: 'Skill Tournament #53',
-        label: 'Open',
+        name: 'Microsoft Sponsored Tour #2',
+        label: 'Proposed',
         date: 'December 15, 2020'
       },
-      prize: '$3,000',
-      teamSize: 146,
-      registrationInfo: {
-        status: 'Exterm',
-        showIcons: true,
-        timeline: 'Ends in 2 days'
-      }
-    },
-    {
-      id: 5,
-      gameMode: 'default',
-      status: 'closed',
-      tournament: {
-        name: 'Skill Tournament #53',
-        label: 'Open',
-        date: 'December 15, 2020'
-      },
-      prize: '$1,750',
+      prize: '$800',
       teamSize: null,
       registrationInfo: {
-        status: 'MissY',
-        showIcons: true,
-        timeline: 'Ends in 2 days'
+        status: 'Open soon',
+        timeline: ''
       }
-    },
-    {
-      id: 5,
-      gameMode: 'default',
-      status: 'closed',
-      tournament: {
-        name: 'Skill Tournament #53',
-        label: 'Open',
-        date: 'December 15, 2020'
-      },
-      prize: '$5,000',
-      teamSize: 133,
-      registrationInfo: {
-        status: 'Rooooste3',
-        showIcons: true,
-        timeline: 'Ends in 2 days'
-      }
-    },
-    {
-      id: 5,
-      gameMode: 'default',
-      status: 'closed',
-      tournament: {
-        name: 'Skill Tournament #53',
-        label: 'Open',
-        date: 'December 15, 2020'
-      },
-      prize: '$4,200',
-      teamSize: null,
-      registrationInfo: {
-        status: 'Bip',
-        showIcons: true,
-        timeline: 'Ends in 2 days'
-      }
-    },
+    }
   ]
 }

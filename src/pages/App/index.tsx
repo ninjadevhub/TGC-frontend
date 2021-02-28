@@ -12,6 +12,7 @@ import RegistrationPage from '../RegistrationPage';
 import LoginPage from '../LoginPage';
 import PaymentPage from '../PaymentPage';
 import LeaderboardPage from "../LeaderboardPage";
+import TournamentPage from "../TournamentPage";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
       </Route>
       <Route exact path="/leaderboard">
         <LeaderboardPage />
+      </Route>
+<Route exact path="/tournament">
+        <TournamentPage />
       </Route>
       <Redirect to="/404" />
     </Switch>

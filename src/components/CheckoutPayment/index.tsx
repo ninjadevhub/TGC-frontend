@@ -9,8 +9,8 @@ import amexLogo from '../../images/amex.svg';
 import discoverLogo from '../../images/discover.svg';
 
 const StyledCheckoutPayment = styled.div`
-  width: 100%;
-  margin-top: 19px;
+  width: 675px;
+  margin-top: 72px;
   padding: 21px 0 40px;
   background: rgba(29, 29, 29, 0.7);
   backdrop-filter: blur(10px);
