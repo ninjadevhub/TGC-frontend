@@ -79,7 +79,7 @@ const CheckoutPaymentMethod = styled.div`
 const CheckoutPayment: React.FC = () => {
   return (
     <StyledCheckoutPayment>
-        <CheckoutPaymentTitle>Payment</CheckoutPaymentTitle>
+        <CheckoutPaymentTitle>CHECKOUT</CheckoutPaymentTitle>
         <CheckoutPaymentSum>$50</CheckoutPaymentSum>
         <PaymentLabel>Duos #21Y2: $25/person for 2 players</PaymentLabel>
         <CheckoutPaymentButtonWrapper>

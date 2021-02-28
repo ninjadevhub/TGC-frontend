@@ -1,5 +1,5 @@
 export interface ITotalPayment {
-  title: string;
+  title?: string;
   sum: string;
   sumFirst?: boolean;
   isBig?: boolean;

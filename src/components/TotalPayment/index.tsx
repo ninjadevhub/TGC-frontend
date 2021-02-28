@@ -51,7 +51,7 @@ const TotalPayment = ({ title, sum, sumFirst = true, isBig = true }: ITotalPayme
     <TotalPaymentWrapper isBig={isBig}>
       <TotalPaymentImage src={cupIcon} alt="warzone logo" isBig={isBig} />
       <TotalPaymentText sumFirst={sumFirst}>
-        <TotalPaymentTitle isBig={isBig}>{title}</TotalPaymentTitle>
+          {title && <TotalPaymentTitle isBig={isBig}>{title}</TotalPaymentTitle>}
         <TotalPaymentSum isBig={isBig}>{sum}</TotalPaymentSum>
       </TotalPaymentText>
     </TotalPaymentWrapper>
