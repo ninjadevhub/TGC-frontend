@@ -6,6 +6,7 @@ import codIcon from '../../images/cod-icon.png';
 import apexIcon from '../../images/apex-icon.png';
 import lolIcon from '../../images/lol-icon.png';
 import gameIcon from '../../images/game-icon.png';
+import { device } from "../../styles/constants";
 
 const StyledHeader = styled.div`
     background-color: #000;
@@ -16,6 +17,25 @@ const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 70px;
+  
+  @media ${device.tablet} {
+    min-height: 52px;  
+  }
+  
+  & > img {
+    display: none;
+
+    @media ${device.tablet} {
+      display: block;
+      width: 20%;
+    }
+
+    @media ${device.laptop} {
+      width: auto;
+    }
+  }
+  
 `;
 
 const Header: React.FC = () => {

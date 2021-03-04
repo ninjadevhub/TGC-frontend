@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputBlock from '../InputBlock';
-import { Paragraph, RegisterButton } from '../../styles/mixins';
+import { Paragraph, ButtonWithBorder } from '../../styles/mixins';
 import circledCheckIcon from '../../images/circled-check.svg';
 import arrowIcon from '../../images/arrow.svg';
 
@@ -26,7 +26,7 @@ const PaymentSuccessFormWrapper = styled.form`
   }
 `;
 
-const PaymentSuccessFormButton = styled(RegisterButton)`
+const PaymentSuccessFormButton = styled(ButtonWithBorder)`
   max-width: 306px;
   margin: 69px auto 0;
 `;

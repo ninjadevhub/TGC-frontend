@@ -1,14 +1,18 @@
 import styled from 'styled-components';
+import { device } from './constants';
 
-// export const CtaButton = styled.h1<ICtaButton>`
-export const LayoutWrapper = styled.div`
+export const LayoutWrapper = styled.div<{ removeMobilePaddings?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   max-width: 1260px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: ${({ removeMobilePaddings }) => removeMobilePaddings ? 0 : '0 20px'};
+
+  @media ${device.tablet} {
+    padding: 0 20px;
+  }
 `;
 
 export const SimpleButton = styled.button`
@@ -37,13 +41,20 @@ export const CtaButton = styled.button`
   }
 `;
 
-export const RegisterButton = styled(CtaButton)`
+export const ButtonWithBorder = styled(CtaButton)`
   font-size: 20px;
   line-height: 24px;
   padding: 12px 83px;
   background: linear-gradient(0deg, rgba(190, 12, 12, 0.3), rgba(190, 12, 12, 0.3));
   border: 2px solid #DB4C4C;
   border-radius: 4px;
+`;
+
+
+export const LoginRegisterButton = styled(ButtonWithBorder)`
+  max-width: 306px;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 export const Paragraph = styled.p`
@@ -54,10 +65,15 @@ export const Paragraph = styled.p`
 `;
 
 export const HeadingH1 = styled.h1`
-  font-size: 60px;
-  line-height: 72px;
+  font-size: 40px;
+  line-height: 48px;
   color: #E9DBF0;
   text-align: center;
+
+  @media ${device.tablet} {
+    font-size: 60px;
+    line-height: 72px;
+  }
 `;
 
 export const HeadingH2 = styled.h2`
@@ -65,4 +81,18 @@ export const HeadingH2 = styled.h2`
   color: #fff;
   font-weight: normal;
   text-align: center;
+`;
+
+export const ShowOnDesktop = styled.div`
+  display: none;
+
+  @media ${device.tablet} {
+    display: block;
+  }
+`;
+
+export const ShowOnMobile = styled.div`
+  @media ${device.tablet} {
+    display: none;
+  }
 `;

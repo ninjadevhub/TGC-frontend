@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CtaButton, LayoutWrapper, SimpleButton, RegisterButton } from '../../styles/mixins';
+import { CtaButton, LayoutWrapper, SimpleButton, ButtonWithBorder } from '../../styles/mixins';
 import warzoneLogo from '../../images/warzone-logo.png';
 import tournaments from '../../images/tournaments.png';
 import city from '../../images/city.png';
@@ -76,7 +76,7 @@ const MainBanner: React.FC = () => {
             <img src={tournaments} alt="tournaments" />
             <Announcement>Next Tournaments</Announcement>
             <AnnouncementDate>February 3, 2021</AnnouncementDate>
-            <RegisterButton>Register Now</RegisterButton>
+            <ButtonWithBorder>Register Now</ButtonWithBorder>
             <ViewAllEvents>View all events</ViewAllEvents>
           </BannerTextWrapper>
       </MainBannerWrapper>

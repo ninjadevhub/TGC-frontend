@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputBlock from '../InputBlock';
-import { RegisterButton, LayoutWrapper, Paragraph } from '../../styles/mixins';
+import { LoginRegisterButton, LayoutWrapper, Paragraph } from '../../styles/mixins';
 import checkIcon from '../../images/check-icon.svg';
 
 const RegistrationFormWrapper = styled.form`
@@ -69,11 +69,6 @@ const LabeledCheckbox = styled.div`
   }
 `;
 
-const RegistrationFormButton = styled(RegisterButton)`
-  max-width: 306px;
-  margin: 0 auto;
-`;
-
 const RegistrationForm: React.FC = () => {
   return (
     <RegistrationFormWrapper>
@@ -90,7 +85,7 @@ const RegistrationForm: React.FC = () => {
       <LabeledCheckbox>
         <InputBlock label='I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.' type='checkbox' id='checkTerms' />
       </LabeledCheckbox>
-      <RegistrationFormButton>Join Now</RegistrationFormButton>
+      <LoginRegisterButton>Join Now</LoginRegisterButton>
     </RegistrationFormWrapper>
   );
 }

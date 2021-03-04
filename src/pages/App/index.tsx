@@ -14,6 +14,7 @@ import PaymentPage from '../PaymentPage';
 import LeaderboardPage from "../LeaderboardPage";
 import TournamentPage from "../TournamentPage";
 import PaymentSuccess from '../PaymentSuccess';
+import EmailTemplate from '../EmailTemplate';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
       </Route>
       <Route exact path="/payment-success">
         <PaymentSuccess />
+      </Route>
+      <Route exact path="/email-template">
+        <EmailTemplate />
       </Route>
       <Redirect to="/404" />
     </Switch>

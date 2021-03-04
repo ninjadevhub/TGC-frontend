@@ -10,6 +10,7 @@ import visaLogo from '../../images/visa-white.svg';
 import mastercardLogo from '../../images/mastercard-white.svg';
 import amexLogo from '../../images/amex-white.svg';
 import trustedGoogleLogo from '../../images/trusted-google.svg';
+import { device } from '../../styles/constants';
 
 const StyledFeaturesBanner = styled.div`
   background: #202020;
@@ -20,21 +21,47 @@ const FooterLayoutWrapper = styled(LayoutWrapper)`
 `;
 
 const FooterWrapper = styled.div`
-  flex-basis: 60%;
+  display: flex;
+  flex-wrap: wrap;
   color: #fff;
   padding: 40px 0 21px;
+
+  @media ${device.tablet} {
+    display: block;
+    flex-basis: 60%;
+  }
 `;
 
 const FooterBottomWrapper = styled(FooterWrapper)`
-  padding: 24px 0 40px;
+  padding: 24px 0;
+
+  @media ${device.tablet} {
+    padding-bottom: 40px;
+  }
 `;
 
 const LogoLink = styled.a`
   display: inline-block;
-  margin-bottom: 22px;
+  width: 112px;
+  margin: 0 32px 16px 0;
+
+  @media ${device.tablet} {
+    margin-bottom: 0 0 22px;
+  }
+  
+  img {
+    width: 100%;
+  }
 `;
 
 const FooterSocials = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+
+  @media ${device.tablet} {
+    margin-bottom: 0;  
+  }
+  
   img {
     width: 26px;
     margin-right: 13px;
@@ -43,6 +70,14 @@ const FooterSocials = styled.div`
 
 const FooterNavWrapper = styled.div`
   display: flex;
+  
+  div:last-child {
+    display: none;
+
+    @media ${device.tablet} {
+      display: block;
+    }
+  }
 `;
 
 const FooterNav = styled.nav`
@@ -55,7 +90,11 @@ const FooterNav = styled.nav`
 
 const FooterNavMain = styled(FooterNav)`
   a {
-    flex-basis: 33%;
+    flex-basis: 50%;
+
+    @media ${device.tablet} {
+      flex-basis: 33%;
+    }
   }
 `;
 
@@ -66,7 +105,11 @@ const FooterNavAdditional = styled(FooterNav)`
 `;
 
 const FooterNavPolicy = styled(FooterNav)`
-  display: block;
+  display: none;
+
+  @media ${device.tablet} {
+    display: block;
+  }
 
   a {
     margin-right: 10px; 
@@ -103,12 +146,21 @@ const FooterPolicyText = styled(FooterNavTitle)`
 
 const TrustedGoogleImage = styled.img`
   position: absolute;
-  right: 20%;
-  top: 90px;
+  right: 20px;
+  bottom: 24px;
+
+  @media ${device.tablet} {
+    right: 20%;
+    top: 90px;
+  }
 `;
 
 const FooterPayment = styled.div`
-  margin-top: 25px;
+  margin-top: 14px;
+
+  @media ${device.tablet} {
+    margin-top: 25px;
+  }
 
   img {
     width: 27px;
