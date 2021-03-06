@@ -65,7 +65,7 @@ const WinnerCard = ({ place, winners }: IPlace) => {
         {winners.map(({ id, name, countryLogo }: IWinner) => {
           return (
             <WinnerItem key={id}>
-              <WinnerCardImage src={countryLogo} alt="warzone logo" />
+              <WinnerCardImage src={countryLogo} alt='warzone logo' />
               <WinnerCardName>{name}</WinnerCardName>
             </WinnerItem>
           )

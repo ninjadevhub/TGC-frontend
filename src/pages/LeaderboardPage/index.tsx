@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TotalPayment from '../../components/TotalPayment';
 import Leaderboard from '../../components/Leaderboard';
-import { HeadingH1, HeadingH2, LayoutWrapper, Paragraph } from '../../styles/mixins';
+import { HeadingH1, HeadingH2, LayoutWrapper, Paragraph, UserContentWrapper } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import registration from '../../images/registration.png';
@@ -43,13 +43,6 @@ const PaymentPageText = styled(Paragraph)`
   margin: 0;
   z-index: 1;
   text-align: center;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 33px 0;
 `;
 
 const UserAccount = styled.p`
@@ -93,9 +86,9 @@ const LeaderboardPage: React.FC = () => {
   return (
     <StyledPaymentPage>
       <PaymentPageWrapper>
-        <ContentWrapper>
+        <UserContentWrapper>
           <UserAccount>Francis Green</UserAccount>
-        </ContentWrapper>
+        </UserContentWrapper>
         <MenuList>
           <MenuItem>All Tournaments</MenuItem>
           <MenuItem>My Tournaments</MenuItem>

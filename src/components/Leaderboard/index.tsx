@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { LayoutWrapper } from '../../styles/mixins';
 import { ILeaderboardTableRow } from './types';
 import { mockedTableData, userTableData } from './mockedData';
-import LeaderboardItem from "../LeaderboardItem";
+import LeaderboardItem from '../LeaderboardItem';
 
 const StyledLeaderboard = styled.div`
   width: 100%;

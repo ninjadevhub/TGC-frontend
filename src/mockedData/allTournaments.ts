@@ -32,7 +32,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -48,7 +48,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: 146,
       registrationInfo: {
         status: 'Full',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -64,7 +64,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -80,7 +80,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -96,7 +96,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -112,7 +112,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Register',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -128,7 +128,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Open soon',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -144,7 +144,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Open soon',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     },
     {
@@ -160,7 +160,7 @@ export const allTournamentsData: IMockedTableData = {
       teamSize: null,
       registrationInfo: {
         status: 'Open soon',
-        timeline: ''
+        timeline: 'Ends in 2 days'
       }
     }
   ]

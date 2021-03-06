@@ -177,37 +177,37 @@ const Footer = () => {
     <StyledFeaturesBanner>
       <FooterLayoutWrapper>
           <FooterWrapper>
-            <LogoLink href="/"><img src={mainLogo} alt="logo" /></LogoLink>
+            <LogoLink href='/'><img src={mainLogo} alt='logo' /></LogoLink>
             <FooterSocials>
-              <img src={facebookLogo} alt="facebook logo" />
-              <img src={twitterLogo} alt="twitter logo" />
-              <img src={linkedinLogo} alt="linkedin logo" />
+              <img src={facebookLogo} alt='facebook logo' />
+              <img src={twitterLogo} alt='twitter logo' />
+              <img src={linkedinLogo} alt='linkedin logo' />
             </FooterSocials>
             <FooterNavWrapper>
               <div>
                 <FooterNavTitle>Resources</FooterNavTitle>
                 <FooterNavMain>
-                  <FooterNavLink href="/">Support-A-Creator</FooterNavLink>
-                  <FooterNavLink href="/">Company</FooterNavLink>
-                  <FooterNavLink href="/">Store EULA</FooterNavLink>
-                  <FooterNavLink href="/">Publish on Epic Games</FooterNavLink>
-                  <FooterNavLink href="/">Fan Art Policy</FooterNavLink>
-                  <FooterNavLink href="/">Online Services</FooterNavLink>
-                  <FooterNavLink href="/">Careers</FooterNavLink>
-                  <FooterNavLink href="/">UX Research</FooterNavLink>
-                  <FooterNavLink href="/">Community Rules</FooterNavLink>
+                  <FooterNavLink href='/'>Support-A-Creator</FooterNavLink>
+                  <FooterNavLink href='/'>Company</FooterNavLink>
+                  <FooterNavLink href='/'>Store EULA</FooterNavLink>
+                  <FooterNavLink href='/'>Publish on Epic Games</FooterNavLink>
+                  <FooterNavLink href='/'>Fan Art Policy</FooterNavLink>
+                  <FooterNavLink href='/'>Online Services</FooterNavLink>
+                  <FooterNavLink href='/'>Careers</FooterNavLink>
+                  <FooterNavLink href='/'>UX Research</FooterNavLink>
+                  <FooterNavLink href='/'>Community Rules</FooterNavLink>
                 </FooterNavMain>
               </div>
               <div>
                 <FooterNavTitle>Made By Epic Games</FooterNavTitle>
                 <FooterNavAdditional>
-                  <FooterNavLink href="/">Battle Breakers</FooterNavLink>
-                  <FooterNavLink href="/">Shadow Complex</FooterNavLink>
-                  <FooterNavLink href="/">Fortnite</FooterNavLink>
-                  <FooterNavLink href="/">Spyjinx</FooterNavLink>
-                  <FooterNavLink href="/">Infinity Blade</FooterNavLink>
-                  <FooterNavLink href="/">Unreal Tournament</FooterNavLink>
-                  <FooterNavLink href="/">Robo Recall</FooterNavLink>
+                  <FooterNavLink href='/'>Battle Breakers</FooterNavLink>
+                  <FooterNavLink href='/'>Shadow Complex</FooterNavLink>
+                  <FooterNavLink href='/'>Fortnite</FooterNavLink>
+                  <FooterNavLink href='/'>Spyjinx</FooterNavLink>
+                  <FooterNavLink href='/'>Infinity Blade</FooterNavLink>
+                  <FooterNavLink href='/'>Unreal Tournament</FooterNavLink>
+                  <FooterNavLink href='/'>Robo Recall</FooterNavLink>
                 </FooterNavAdditional>
               </div>
             </FooterNavWrapper>
@@ -220,18 +220,18 @@ const Footer = () => {
                 <FooterPolicyText>© 2021 TGC  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pharetra sed proin orci mi. Risus dolor ullamcorper senectus quam accumsan, tempor, metus. Aliquet eu sed sed viverra neque. Tellus volutpat sed pharetra cursus posuere. Sit quis egestas mi ut tortor erat tellus eu. Scelerisque velit, sit egestas arcu placerat at ut ut. Ipsum congue nunc ipsum ullamcorper fusce sollicitudin velit. Neque sed in eu, laoreet proin sed. Quam nec nunc amet elit amet vulputate nullam sed.
 Vulputate proin praesent pharetra nibh rhoncus.</FooterPolicyText>
                 <FooterNavPolicy>
-                  <FooterNavLink href="/">Terms of Service</FooterNavLink>
-                  <FooterNavLink href="/">Privacy Policy</FooterNavLink>
-                  <FooterNavLink href="/">Store Refund Policy</FooterNavLink>
+                  <FooterNavLink href='/'>Terms of Service</FooterNavLink>
+                  <FooterNavLink href='/'>Privacy Policy</FooterNavLink>
+                  <FooterNavLink href='/'>Store Refund Policy</FooterNavLink>
                 </FooterNavPolicy>
               </div>
               <FooterPayment>
-                <img src={sslSecureLogo} alt="ssl secure logo" />
-                <img src={visaLogo} alt="visa logo" />
-                <img src={mastercardLogo} alt="mastercard logo" />
-                <img src={amexLogo} alt="amex logo" />
+                <img src={sslSecureLogo} alt='ssl secure logo' />
+                <img src={visaLogo} alt='visa logo' />
+                <img src={mastercardLogo} alt='mastercard logo' />
+                <img src={amexLogo} alt='amex logo' />
               </FooterPayment>
-                <TrustedGoogleImage src={trustedGoogleLogo} alt="trusted google logo" />
+                <TrustedGoogleImage src={trustedGoogleLogo} alt='trusted google logo' />
           </FooterBottomWrapper>
       </FooterLayoutWrapper>
     </StyledFeaturesBanner>

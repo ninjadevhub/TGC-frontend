@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { LayoutWrapper, HeadingH2 } from '../../styles/mixins';
 import TournamentItem from '../TournamentItem';
-import {ITableRow, ITournamentTable} from './types';
+import { ITableRow, ITournamentTable } from './types';
+import { device } from '../../styles/constants';
 
 const StyledTournamentTable = styled.div`
   width: 100%;
@@ -11,8 +12,7 @@ const StyledTournamentTable = styled.div`
 `;
 
 const TournamentTableHead = styled.div<{ styledHeader: boolean }>`
-  display: flex;
-  justify-content: space-between;
+  display: none;
   color: #7f7f7f;
   text-transform: uppercase;
   font-weight: 600;
@@ -22,6 +22,11 @@ const TournamentTableHead = styled.div<{ styledHeader: boolean }>`
   background-color: ${({ styledHeader }) => styledHeader ? '#2f2e2e' : 'tranparent'};
   border-top-left-radius: ${({ styledHeader }) => styledHeader ? '8px' : 0};
   border-top-right-radius: ${({ styledHeader }) => styledHeader ? '8px' : 0};
+
+  @media ${device.tablet} {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const TournamentTableBody = styled.div``;
@@ -54,12 +59,16 @@ const TournamentTableHeadItem = styled.div`
 `;
 
 const TournamentTableFooter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
   padding: 40px 0 59px;
   background-color: #2f2e2e;
   border-radius: 0 0  8px 8px;
+
+  @media ${device.tablet} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const TournamentTableFooterButton = styled.button`
@@ -85,7 +94,7 @@ const TournamentTable = ({
 }: ITournamentTable) => {
   const { tableHead, tableBody } = data;
   return (
-      <MainBannerWrapper>
+      <MainBannerWrapper removeMobilePaddings={true}>
         {title && <TournamentTableTitle>{title}</TournamentTableTitle>}
         <StyledTournamentTable>
           <TournamentTableHead styledHeader={styledHeader}>

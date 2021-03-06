@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputBlock from '../InputBlock';
-import { LoginRegisterButton } from '../../styles/mixins';
+import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import { device } from '../../styles/constants';
 
 const RegistrationFormWrapper = styled.form`

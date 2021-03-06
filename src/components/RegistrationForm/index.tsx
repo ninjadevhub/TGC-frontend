@@ -1,16 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputBlock from '../InputBlock';
-import { LoginRegisterButton, LayoutWrapper, Paragraph } from '../../styles/mixins';
+import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import checkIcon from '../../images/check-icon.svg';
+import { device } from '../../styles/constants';
 
 const RegistrationFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background: rgba(29, 29, 29, 0.7);
   backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 82px 118px 95px;
+  padding: 82px 20px 76px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media ${device.tablet} {
+    width: 675px;
+    border-radius: 8px;
+    padding: 82px 107px 95px;
+  }
 
   & > div {
     margin-bottom: 73px;
@@ -32,7 +40,6 @@ const DateOfBirthBlock = styled.div`
 `;
 
 const LabeledCheckbox = styled.div`
-
   div {
     display: flex;
 
@@ -43,14 +50,25 @@ const LabeledCheckbox = styled.div`
 
     label {
       position: relative;
+      padding-left: 32px;
       color: #fff;
       font-family: 'San Francisco', Arial, sans-serif;
+      font-size: 12px;
+      line-height: 21px;
+
+      @media ${device.tablet} {
+       
+      }
 
       &::before {
         content: '';
         width: 19px;
         height: 19px;
-        display: inline-block;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
         margin-right: 12px;
         background-color: inherit;
         border: 1px solid #B2212B;

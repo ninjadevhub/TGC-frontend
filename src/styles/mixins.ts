@@ -50,13 +50,6 @@ export const ButtonWithBorder = styled(CtaButton)`
   border-radius: 4px;
 `;
 
-
-export const LoginRegisterButton = styled(ButtonWithBorder)`
-  max-width: 306px;
-  margin: 0 auto;
-  width: 100%;
-`;
-
 export const Paragraph = styled.p`
   font-size: 14px;
   line-height: 17px;
@@ -83,6 +76,27 @@ export const HeadingH2 = styled.h2`
   text-align: center;
 `;
 
+export const PageHeader = styled(HeadingH1)`
+  margin: 81px 0 2px;
+  z-index: 1;
+  font-weight: normal;
+  
+  @media ${device.tablet} {
+    margin-top: 72px;  
+  }
+`;
+
+export const PageHeaderBgImage = styled.img`
+  width: 70%;
+  position: absolute;
+  top: 125px;
+
+  @media ${device.tablet} {
+    width: auto;
+    top: 136px;
+  }
+`;
+
 export const ShowOnDesktop = styled.div`
   display: none;
 
@@ -92,7 +106,23 @@ export const ShowOnDesktop = styled.div`
 `;
 
 export const ShowOnMobile = styled.div`
+  display: block;
+  
   @media ${device.tablet} {
     display: none;
+  }
+`;
+
+export const UserContentWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+
+  @media ${device.tablet} {
+    position: relative;
+    margin: 33px 0;
   }
 `;

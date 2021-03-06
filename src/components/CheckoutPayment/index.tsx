@@ -7,19 +7,31 @@ import visaLogo from '../../images/visa.svg';
 import mastercardLogo from '../../images/mastercard.svg';
 import amexLogo from '../../images/amex.svg';
 import discoverLogo from '../../images/discover.svg';
+import { device } from '../../styles/constants';
 
 const StyledCheckoutPayment = styled.div`
-  width: 675px;
+  width: 100%;
   margin-top: 72px;
-  padding: 21px 0 40px;
+  padding: 21px 0 45px;
   background: rgba(29, 29, 29, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 8px;
+
+  @media ${device.tablet} {
+    width: 675px;
+    padding-bottom: 40px;
+  }
 `;
 
 const CheckoutPaymentTitle = styled(HeadingH2)`
   text-align: center;
   margin: 0 0 17px;
+  font-size: 20px;
+  line-height: 24px;
+
+  @media ${device.tablet} {
+    font-size: 24px;
+  }
 `;
 
 const CheckoutPaymentSum = styled.div`
@@ -83,14 +95,14 @@ const CheckoutPayment: React.FC = () => {
         <CheckoutPaymentSum>$50</CheckoutPaymentSum>
         <PaymentLabel>Duos #21Y2: $25/person for 2 players</PaymentLabel>
         <CheckoutPaymentButtonWrapper>
-          <CheckoutPaymentButton paymentType="applePay"/>
-          <CheckoutPaymentButton paymentType="payPal"/>
+          <CheckoutPaymentButton paymentType='applePay'/>
+          <CheckoutPaymentButton paymentType='payPal'/>
         </CheckoutPaymentButtonWrapper>
         <CheckoutPaymentMethod>
-          <img src={mastercardLogo} alt="mastercard logo" />
-          <img src={visaLogo} alt="visa logo" />
-          <img src={discoverLogo} alt="discover logo" />
-          <img src={amexLogo} alt="amex logo" />
+          <img src={mastercardLogo} alt='mastercard logo' />
+          <img src={visaLogo} alt='visa logo' />
+          <img src={discoverLogo} alt='discover logo' />
+          <img src={amexLogo} alt='amex logo' />
         </CheckoutPaymentMethod>
     </StyledCheckoutPayment>
   );

@@ -72,8 +72,8 @@ const MainBanner: React.FC = () => {
             <Link to='/login'><SimpleButton>Sign In</SimpleButton></Link>
           </ButtonWrapper>
           <BannerTextWrapper>
-            <img src={warzoneLogo} alt="warzone logo" />
-            <img src={tournaments} alt="tournaments" />
+            <img src={warzoneLogo} alt='warzone logo' />
+            <img src={tournaments} alt='tournaments' />
             <Announcement>Next Tournaments</Announcement>
             <AnnouncementDate>February 3, 2021</AnnouncementDate>
             <ButtonWithBorder>Register Now</ButtonWithBorder>

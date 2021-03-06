@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PaymentSuccessForm from '../../components/PaymentSuccessForm';
-import { HeadingH1, LayoutWrapper, Paragraph } from '../../styles/mixins';
+import { HeadingH1, LayoutWrapper, Paragraph, UserContentWrapper } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import tgcClub from '../../images/tgc-club.png';
@@ -80,9 +80,9 @@ const PaymentSuccess: React.FC = () => {
   return (
     <StyledRegistrationPage>
       <RegistrationPageWrapper>
-      <ContentWrapper>
+        <UserContentWrapper>
           <UserAccount>Francis Green</UserAccount>
-        </ContentWrapper>
+        </UserContentWrapper>
         <MenuList>
           <MenuItem>All Tournaments</MenuItem>
           <MenuItem>My Tournaments</MenuItem>
