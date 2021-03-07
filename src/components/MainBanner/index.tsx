@@ -1,37 +1,43 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CtaButton, LayoutWrapper, SimpleButton, ButtonWithBorder } from '../../styles/mixins';
+import { Link } from 'react-router-dom';
+import {
+    CtaButton,
+    LayoutWrapper,
+    SimpleButton,
+    ButtonWithBorder,
+    ButtonWrapper,
+    ShowOnDesktop, ShowOnMobile
+} from '../../styles/mixins';
+import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import warzoneLogo from '../../images/warzone-logo.png';
 import tournaments from '../../images/tournaments.png';
 import city from '../../images/city.png';
 import bannerBackground from '../../images/banner-bg.jpg';
-import { Link } from 'react-router-dom';
+import { device } from '../../styles/constants';
 
 const StyledMainBanner = styled.div`
-  min-height: 1150px;
+  min-height: 645px;
   padding-top: 22px;
   background: url(${city}) bottom, url(${bannerBackground});
   background-size: contain, cover;
   background-repeat: no-repeat;
+
+  @media ${device.tablet} {
+    min-height: 1150px;
+  }
 `;
 
 const MainBannerWrapper = styled(LayoutWrapper)`
   flex-direction: column;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-bottom: 37px;
-
-  a {
-    line-height: 52px;
-  }
-`;
-
 const JoinTCGButton = styled(CtaButton)`
   margin-right: 31px;
+`;
+
+const HomepageButtonWrapper = styled(ButtonWrapper)`
+  margin-bottom: 37px;
 `;
 
 const BannerTextWrapper = styled.div`
@@ -39,44 +45,83 @@ const BannerTextWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   color: #fff;
+  margin-top: 132px;
+  
+  @media ${device.tablet} {
+    margin-top: 0;
+  }
 `;
 
 const Announcement = styled.p`
-  margin: 120px 0 9px;
-  font-size: 14px;
-  line-height: 17px;
+  margin: 40px 0 9px;
+  font-size: 10px;
+  line-height: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #B2212B;
+
+  @media ${device.tablet} {
+    margin-top: 120px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 
 const AnnouncementDate = styled.p`
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 20px;
+  line-height: 24px;
   margin: 0 0 20px;
+
+  @media ${device.tablet} {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
 
 const ViewAllEvents = styled(SimpleButton)`
-  margin-top: 9px;
-  font-size: 14px;
-  line-height: 17px;
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 14px;
   text-transform: uppercase;
+
+  @media ${device.tablet} {
+    margin-top: 9px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+`;
+
+const WarzoneLogo = styled.img`
+  width: calc(100% - 80px);
+
+  @media ${device.tablet} {
+    width: auto;
+  }
+`;
+
+const TournamentImage = styled.img`
+  width: calc(100% - 40px);
+
+  @media ${device.tablet} {
+    width: auto;
+  }
 `;
 
 const MainBanner: React.FC = () => {
   return (
     <StyledMainBanner>
       <MainBannerWrapper>
-          <ButtonWrapper>
-            <Link to='/registration'><JoinTCGButton>Join TGC Club</JoinTCGButton></Link>
-            <Link to='/login'><SimpleButton>Sign In</SimpleButton></Link>
-          </ButtonWrapper>
+          <HomepageButtonWrapper>
+              <ShowOnMobile><Link to='/registration'><CtaButton>Join</CtaButton></Link></ShowOnMobile>
+              <ShowOnDesktop><Link to='/registration'><JoinTCGButton>Join TGC Club</JoinTCGButton></Link></ShowOnDesktop>
+              <ShowOnDesktop><Link to='/login'><SimpleButton>Sign In</SimpleButton></Link></ShowOnDesktop>
+          </HomepageButtonWrapper>
           <BannerTextWrapper>
-            <img src={warzoneLogo} alt='warzone logo' />
-            <img src={tournaments} alt='tournaments' />
+            <WarzoneLogo src={warzoneLogo} alt='warzone logo' />
+            <TournamentImage src={tournaments} alt='tournaments' />
             <Announcement>Next Tournaments</Announcement>
             <AnnouncementDate>February 3, 2021</AnnouncementDate>
-            <ButtonWithBorder>Register Now</ButtonWithBorder>
+            <LoginRegisterButton>Register Now</LoginRegisterButton>
             <ViewAllEvents>View all events</ViewAllEvents>
           </BannerTextWrapper>
       </MainBannerWrapper>

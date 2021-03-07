@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from './constants';
-import { ButtonWithBorder, HeadingH1, Paragraph } from "./mixins";
+import { ButtonWithBorder, Paragraph } from "./mixins";
 
 export const LoginRegistrationPageLinks = styled(Paragraph)`
   font-family: 'San Francisco', Arial, sans-serif;
@@ -19,23 +19,9 @@ export const LoginRegistrationPageLinks = styled(Paragraph)`
   }
 `;
 
-export const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 0;
-  position: absolute;
-  top: 18px;
-  right: 20px;
-
-  @media ${device.tablet} {
-    position: relative;
-    margin-top: 22px;
-  }
-`;
-
 export const LoginRegisterButton = styled(ButtonWithBorder)`
   max-width: 306px;
   margin: 0 auto;
+  padding: 12px;
   width: 100%;
 `;

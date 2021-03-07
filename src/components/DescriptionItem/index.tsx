@@ -2,15 +2,19 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../styles/mixins';
 import { IDescriptionText } from '../Description/types';
+import { device } from '../../styles/constants';
 
 const StyledDescriptionItem = styled.div`
   flex-basis: 33%;
   text-align: center;
   padding: 0 25px;
   box-sizing: border-box;
-
+  margin-bottom: 47px;  
+  
   &:first-child {
-    margin-bottom: 75px;
+    @media ${device.tablet} {
+      margin-bottom: 75px;
+    }
   }
 `;
 

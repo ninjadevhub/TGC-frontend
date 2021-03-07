@@ -5,6 +5,7 @@ import TotalPayment from '../TotalPayment';
 import WinnerCard from '../WinnerCard';
 import { mockedWinners } from './mockedData';
 import { IPlace } from '../WinnerCard/types';
+import { device } from '../../styles/constants';
 
 const StyledRecentWinners = styled.div`
   padding: 0 0 100px;
@@ -16,20 +17,36 @@ const RecentWinnersWrapper = styled(LayoutWrapper)`
 `;
 
 const RecentWinnersPayment = styled.div`
-  transform: translateY(-70px);
+  padding-bottom: 50px;
+  
+  @media ${device.tablet} {
+    padding-bottom: 0;
+    transform: translateY(-70px);
+  }
 `;
 
 const WinnersBlock = styled.div``;
 
 const WinnersTitle = styled(HeadingH2)`
   margin-bottom: 31px;
+  font-size: 12px;
+  line-height: 14px;
+
+  @media ${device.tablet} {
+    font-size: 24px;
+    line-height: 28px;
+  }
 `;
 
 const WinnersList = styled.div`
   display: flex;
 
   & > div:not(:last-child) {
-    margin-right: 24px;
+    margin-right: 10px;
+
+    @media ${device.tablet} {
+      margin-right: 24px;
+    }
   }
 `;
 

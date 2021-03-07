@@ -10,8 +10,8 @@ interface IProp {
 }
 
 const TotalPaymentWrapper = styled.div<IProp>`
-  width: ${({ isBig }) => isBig ? '697px' : '196px'};
-  max-height: ${({ isBig }) => isBig ? '174px' : '87px'};
+  width: ${({ isBig }) => isBig ? '281px' : '196px'};
+  max-height: ${({ isBig }) => isBig ? '71px' : '87px'};
   background-color: #B2212B;
   border-radius: ${({ isBig }) => isBig ? '40px' : '20px'};
   display: flex;
@@ -27,9 +27,9 @@ const TotalPaymentWrapper = styled.div<IProp>`
 `;
 
 const TotalPaymentImage = styled.img<IProp>`
-  width: ${({ isBig }) => isBig ? '251px' : '48px'};
+  width: ${({ isBig }) => isBig ? '101px' : '48px'};
   margin: 0 5px 0 -10px;
-  margin-right: ${({ isBig }) => isBig ? '74px' : '5px'};
+  margin-right: ${({ isBig }) => isBig ? '10px' : '5px'};
 
   @media ${device.tablet} {
     width: ${({ isBig }) => isBig ? '251px' : '64px'};
@@ -45,14 +45,19 @@ const TotalPaymentText = styled.div<{ sumFirst: boolean }>`
 `;
 
 const TotalPaymentTitle = styled(Paragraph)<IProp>`
-  font-size: ${({ isBig }) => isBig ? '14px' : '12px'};
-  line-height: ${({ isBig }) => isBig ? '17px' : '15px'};
+  font-size: ${({ isBig }) => isBig ? '10px' : '12px'};
+  line-height: ${({ isBig }) => isBig ? '12px' : '15px'};
   margin: 0;
+
+  @media ${device.tablet} {
+    font-size: ${({ isBig }) => isBig ? '14px' : '12px'};
+    line-height: ${({ isBig }) => isBig ? '17px' : '15px'};
+  }
 `;
 
 const TotalPaymentSum = styled.p<IProp>`
-  font-size: ${({ isBig }) => isBig ? '70px' : '32px'};
-  line-height: ${({ isBig }) => isBig ? '90px' : '50px'};
+  font-size: ${({ isBig }) => isBig ? '30px' : '32px'};
+  line-height: ${({ isBig }) => isBig ? '37px' : '50px'};
   font-family: 'Lalezar', cursive;
   margin: 0;
   white-space: nowrap;

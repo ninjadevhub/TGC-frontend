@@ -1,30 +1,50 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { HeadingH2, LayoutWrapper, Paragraph } from '../../styles/mixins';
+import { HeadingH2, LayoutWrapper, Paragraph, ShowOnDesktop, ShowOnMobile } from '../../styles/mixins';
 import playerImage from '../../images/player.jpg';
+import playerMobileImage from '../../images/player-mobile.jpg';
 import trophyGoldIcon from '../../images/trophy-gold.svg';
 import circledArrow from '../../images/circled-arrow.svg';
 import carouselBg from '../../images/carousel-bg.png';
 import { mockedFeatures } from './mockedData';
 import { IPlayerFeature } from './types';
+import { device } from '../../styles/constants';
 
 const StyledPlayerCarousel = styled.div`
-  padding: 23px 0 184px;
+  padding: 23px 0 0;
   background-color: #000;
+
+  @media ${device.tablet} {
+    padding-bottom: 185px;
+  }
 `;
 
 const PlayerCarouselSlide = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  @media ${device.tablet} {
+   flex-direction: row;
+  }
 `;
 
 const CarouselArrow = styled.img`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 7%;
-  z-index: 1;
+  display: none;
+  
+  @media ${device.tablet} {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 1;  
+  }
+
+  @media ${device.laptop} {
+    right: 7%;
+  }
 `;
 
 const PlayerCarouselBgImage = styled.img`
@@ -34,18 +54,34 @@ const PlayerCarouselBgImage = styled.img`
 `;
 
 const PlayerCarouselBg = styled.div`
-  width: 550px;
-  height: 340px;
-  position: absolute;
-  top: 77px;
-  left: 27%;
-  background-color: #101010;
+  display: none;
+
+  @media ${device.laptop} {
+    display: block;
+    width: 550px;
+    height: 340px;
+    position: absolute;
+    top: 77px;
+    left: 26%;
+    background-color: #101010;
+  }
 `;
 
 const PlayerImageBlock = styled.div`
   position: relative;
-  margin-right: 57px;
   z-index: 1;
+
+  @media ${device.tablet} {
+    margin-right: 57px;
+  }
+  
+  img {
+    width: 100%;
+
+    @media ${device.tablet} {
+      width: auto;
+    }
+  }
 `;
 
 const PlayerInfo = styled.div`
@@ -53,6 +89,10 @@ const PlayerInfo = styled.div`
   position: absolute;
   left: 19px;
   bottom: 19px;
+  
+  img {
+    width: 38px;
+  }
 `;
 
 const PlayerPersonalInfo = styled.div`
@@ -76,27 +116,43 @@ const PlayerTitle = styled.p`
 const PlayerDescription = styled.div`
   flex-basis: 41%;
   color: #fff;
-  padding: 47px 0;
+  padding: 37px 27px;
   z-index: 1;
+
+  @media ${device.tablet} {
+    padding: 47px 0;
+  }
 `;
 
 const DescriptionTitle = styled(HeadingH2)`
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 16px;
+  line-height: 19px;
   text-align: left;
+
+  @media ${device.tablet} {
+    font-size: 32px;
+    line-height: 39px;
+  }
 `;
 
 const DescriptionText = styled(Paragraph)`
-  max-width: 84%;
-  margin: 25px 0 53px;
+  margin: 23px 0;
   color: #878787;
   font-family: 'San Francisco', Arial, sans-serif;
+
+  @media ${device.tablet} {
+    margin: 25px 0 53px;
+    max-width: 84%;
+  }
 `;
 
 const PlayerFeaturesBlock = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 67%;
+
+  @media ${device.tablet} {
+    max-width: 67%;
+  }
 `;
 
 const PlayerFeaturesItem = styled.div``;
@@ -119,13 +175,14 @@ const PlayerFeature = styled.p`
 const PlayersCarousel = () => {
   return (
     <StyledPlayerCarousel>
-      <LayoutWrapper>
+      <LayoutWrapper removeMobilePaddings={true}>
         <PlayerCarouselSlide>
           <PlayerCarouselBgImage src={carouselBg} alt="carousel background image" />
           <PlayerImageBlock>
-            <img src={playerImage} alt="player" />
+            <ShowOnDesktop><img src={playerImage} alt="player" /></ShowOnDesktop>
+            <ShowOnMobile><img src={playerMobileImage} alt="player" /></ShowOnMobile>
             <PlayerInfo>
-            <img src={trophyGoldIcon} alt="trophy icon" />
+            <img src={trophyGoldIcon} alt="trophy" />
             <PlayerPersonalInfo>
                 <PlayerName>Travis Blackburn</PlayerName>
                 <PlayerTitle>Winner of Tournament #12</PlayerTitle>

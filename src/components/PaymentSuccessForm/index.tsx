@@ -2,18 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import InputBlock from '../InputBlock';
 import { Paragraph, ButtonWithBorder } from '../../styles/mixins';
+import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import circledCheckIcon from '../../images/circled-check.svg';
 import arrowIcon from '../../images/arrow.svg';
+import { device } from '../../styles/constants';
 
 const PaymentSuccessFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background: rgba(29, 29, 29, 0.7);
   backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 30px 118px 49px;
-  width: 650px;
+  padding: 30px 20px 49px;
+  width: 100%;
   box-sizing: border-box;
+
+  @media ${device.tablet} {
+    width: 650px;
+    border-radius: 8px;
+    padding: 30px 118px 49px;
+  }
 
   & > div {
     margin-bottom: 73px;
@@ -24,11 +31,10 @@ const PaymentSuccessFormWrapper = styled.form`
       margin-bottom: 3px;
     }
   }
-`;
-
-const PaymentSuccessFormButton = styled(ButtonWithBorder)`
-  max-width: 306px;
-  margin: 69px auto 0;
+  
+  button {
+    margin-top: 73px;
+  }
 `;
 
 const SuccessMessageBlock = styled.div`
@@ -69,7 +75,7 @@ const PaymentSuccessForm: React.FC = () => {
       </Select>
       <InputBlock placeholder='Your Platform ID' />
       <InputBlock placeholder='Email of Player #2' type='email' hasError error='We will send an invitation to player #2' />
-      <PaymentSuccessFormButton>Submit</PaymentSuccessFormButton>
+      <LoginRegisterButton>Submit</LoginRegisterButton>
     </PaymentSuccessFormWrapper>
   );
 }

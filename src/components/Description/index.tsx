@@ -5,18 +5,28 @@ import DescriptionItem from '../DescriptionItem';
 import { IDescriptionText } from './types';
 import { mockedData } from './mockedData';
 import bgGradient from '../../images/bg-gradient.svg';
+import { device } from '../../styles/constants';
 
 const StyledDescription = styled.div`
-  padding: 10px 0 87px;
+  padding: 10px 0 2px;
   background: url(${bgGradient}) no-repeat;
   background-size: cover;
+
+  @media ${device.tablet} {
+    padding-bottom: 87px
+  }
 `;
 
 const DescriptionList = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   margin-top: 72px;
+
+  @media ${device.tablet} {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 `;
 
 const MainBannerWrapper = styled(LayoutWrapper)`

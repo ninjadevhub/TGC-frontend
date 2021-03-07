@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PageHeader, LayoutWrapper, Paragraph, PageHeaderBgImage, UserContentWrapper } from '../../styles/mixins';
+import { PageHeader, LayoutWrapper, Paragraph, PageHeaderBgImage, UserContentWrapper, MenuList, MenuItem } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import registration from '../../images/registration.png';
@@ -73,24 +73,6 @@ const UserAccount = styled.p`
     display: inline-block;
     margin-left: 10px;
   }
-`;
-
-const MenuList = styled.ul`
-  display: none;
-  list-style: none;
-  width: 100%;
-  margin: 0;
-
-  @media ${device.tablet} {
-    display: flex;
-  }
-`;
-
-const MenuItem = styled.li`
-  font-size: 16px;
-  line-height: 19px;
-  color: #fff;
-  margin-right: 50px;
 `;
 
 const PaymentPage: React.FC = () => {

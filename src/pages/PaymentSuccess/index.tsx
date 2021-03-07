@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PaymentSuccessForm from '../../components/PaymentSuccessForm';
-import { HeadingH1, LayoutWrapper, Paragraph, UserContentWrapper } from '../../styles/mixins';
+import { HeadingH1, LayoutWrapper, Paragraph, UserContentWrapper, PageHeaderBgImage, MenuList, MenuItem } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import tgcClub from '../../images/tgc-club.png';
 import arrowIcon from '../../images/arrow-down.svg';
+import { device } from '../../styles/constants';
 
 const StyledRegistrationPage = styled.div`
   min-height: 1100px;
@@ -27,6 +28,7 @@ const PaymentPageHeader = styled(HeadingH1)`
 
 const PaymentPageTextWrapper = styled.div`
   margin: 0 auto 53px;
+  z-index: 1;
 `;
 
 const PaymentPageText = styled(Paragraph)`
@@ -35,18 +37,6 @@ const PaymentPageText = styled(Paragraph)`
   margin: 0;
   z-index: 1;
   text-align: center;
-`;
-
-const RegistrationPageBgImage = styled.img`
-  position: absolute;
-  top: 136px;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 33px 0;
 `;
 
 const UserAccount = styled.p`
@@ -62,24 +52,26 @@ const UserAccount = styled.p`
   }
 `;
 
-const MenuList = styled.ul`
-  display: flex;
-  list-style: none;
+const PaymentSuccessInnerWrapper = styled.div`
   width: 100%;
-  margin: 0;
-`;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  & > img {
+    top: 55px;
 
-const MenuItem = styled.li`
-  font-size: 16px;
-  line-height: 19px;
-  color: #fff;
-  margin-right: 50px;
+    @media ${device.tablet} {
+      top: 65px;
+    }
+  }
 `;
 
 const PaymentSuccess: React.FC = () => {
   return (
     <StyledRegistrationPage>
-      <RegistrationPageWrapper>
+      <RegistrationPageWrapper removeMobilePaddings={true}>
         <UserContentWrapper>
           <UserAccount>Francis Green</UserAccount>
         </UserContentWrapper>
@@ -87,13 +79,15 @@ const PaymentSuccess: React.FC = () => {
           <MenuItem>All Tournaments</MenuItem>
           <MenuItem>My Tournaments</MenuItem>
         </MenuList>
-        <RegistrationPageBgImage src={tgcClub} alt='tgc club background' />
-        <PaymentPageHeader>Duos #21Y2</PaymentPageHeader>
-        <PaymentPageTextWrapper>
-          <PaymentPageText>Feb 15, 2021 @ 6pm PT</PaymentPageText>
-          <PaymentPageText>20 teams per division</PaymentPageText>
-        </PaymentPageTextWrapper>
-        <PaymentSuccessForm />
+        <PaymentSuccessInnerWrapper>
+          <PageHeaderBgImage src={tgcClub} alt='tgc club background' />
+          <PaymentPageHeader>Duos #21Y2</PaymentPageHeader>
+          <PaymentPageTextWrapper>
+            <PaymentPageText>Feb 15, 2021 @ 6pm PT</PaymentPageText>
+            <PaymentPageText>20 teams per division</PaymentPageText>
+          </PaymentPageTextWrapper>
+          <PaymentSuccessForm />
+        </PaymentSuccessInnerWrapper>
       </RegistrationPageWrapper>
     </StyledRegistrationPage>
   );

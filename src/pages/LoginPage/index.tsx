@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LoginForm from '../../components/LoginForm';
-import { CtaButton, LayoutWrapper, ShowOnMobile, ShowOnDesktop, PageHeader, PageHeaderBgImage } from '../../styles/mixins';
-import { LoginRegistrationPageLinks, ButtonWrapper } from '../../styles/login-registration-mixins';
+import {
+  CtaButton, LayoutWrapper, ShowOnMobile, ShowOnDesktop, PageHeader, PageHeaderBgImage, ButtonWrapper
+} from '../../styles/mixins';
+import { LoginRegistrationPageLinks } from '../../styles/login-registration-mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import tgcClub from '../../images/tgc-club.png';

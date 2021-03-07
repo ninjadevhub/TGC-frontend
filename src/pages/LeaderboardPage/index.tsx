@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TotalPayment from '../../components/TotalPayment';
 import Leaderboard from '../../components/Leaderboard';
-import { HeadingH1, HeadingH2, LayoutWrapper, Paragraph, UserContentWrapper } from '../../styles/mixins';
+import { HeadingH1, HeadingH2, LayoutWrapper, Paragraph, UserContentWrapper, MenuList, MenuItem, PageHeaderBgImage } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import registration from '../../images/registration.png';
@@ -21,10 +21,15 @@ const PaymentPageWrapper = styled(LayoutWrapper)`
 `;
 
 const PaymentPageInnerWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
+  
+  & > div {
+    z-index: 1;
+  }
 `;
 
 const PaymentPageHeader = styled(HeadingH1)`
@@ -35,6 +40,7 @@ const PaymentPageHeader = styled(HeadingH1)`
 
 const PaymentPageTextWrapper = styled.div`
   margin: 0 auto 15px;
+  z-index: 1;
 `;
 
 const PaymentPageText = styled(Paragraph)`
@@ -58,25 +64,6 @@ const UserAccount = styled.p`
   }
 `;
 
-const MenuList = styled.ul`
-  display: flex;
-  list-style: none;
-  width: 100%;
-  margin: 0;
-`;
-
-const MenuItem = styled.li`
-  font-size: 16px;
-  line-height: 19px;
-  color: #fff;
-  margin-right: 50px;
-`;
-
-const PaymentPageBgImage = styled.img`
-  position: absolute;
-  top: 190px;
-`;
-
 const CheckoutPaymentTitle = styled(HeadingH2)`
   text-align: center;
   margin: 44px 0 17px;
@@ -94,7 +81,7 @@ const LeaderboardPage: React.FC = () => {
           <MenuItem>My Tournaments</MenuItem>
         </MenuList>
         <PaymentPageInnerWrapper>
-          <PaymentPageBgImage src={registration} alt='tgc club background' />
+          <PageHeaderBgImage src={registration} alt='tgc club background' />
           <PaymentPageHeader>Duos #21Y2</PaymentPageHeader>
           <PaymentPageTextWrapper>
             <PaymentPageText>Feb 1, 2021 @ 6pm PT</PaymentPageText>
