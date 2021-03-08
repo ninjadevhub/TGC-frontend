@@ -71,10 +71,10 @@ const PaymentSuccessForm: React.FC = () => {
       </SuccessMessageBlock>
       <Select>
         <SelectArrow src={arrowIcon} alt='arrow icon' />
-        <InputBlock placeholder='Your Platform Type' />
+        <InputBlock name='platform' placeholder='Your Platform Type' />
       </Select>
-      <InputBlock placeholder='Your Platform ID' />
-      <InputBlock placeholder='Email of Player #2' type='email' hasError error='We will send an invitation to player #2' />
+      <InputBlock name='platformId' placeholder='Your Platform ID' />
+      <InputBlock name='email' placeholder='Email of Player #2' type='email' />
       <LoginRegisterButton>Submit</LoginRegisterButton>
     </PaymentSuccessFormWrapper>
   );

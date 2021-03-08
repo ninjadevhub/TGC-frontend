@@ -42,8 +42,8 @@ const ForgotPasswordLink = styled.a`
 const LoginForm: React.FC = () => {
   return (
     <RegistrationFormWrapper>
-      <InputBlock placeholder='Email' type='email' />
-      <InputBlock placeholder='Password' type='password' />
+      <InputBlock name='email' placeholder='Email' type='email' />
+      <InputBlock name='password' placeholder='Password' type='password' />
       <ForgotPasswordLink>Forgot Password?</ForgotPasswordLink>
       <LoginRegisterButton>Login</LoginRegisterButton>
     </RegistrationFormWrapper>

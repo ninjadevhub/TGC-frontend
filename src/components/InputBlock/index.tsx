@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../styles/mixins';
 import { IInputBlock } from './types';
+import { formRestrictions } from '../../utils/formRestrictions';
 
 const StyledInputBlock = styled.div`
     font-family: 'San Francisco', Arial, sans-serif;
@@ -43,22 +44,22 @@ const InputBlockError = styled(Paragraph)`
 `;
 
 const InputBlock = ({
-    input, id, type = 'text', label, placeholder, required = true, hasError = false, error = ''
-}: IInputBlock) => {
+    id, type = 'text', label, name, placeholder, register, errors, pattern: inputPattern
+                    }: IInputBlock) => {
+    const { restrictions, errorMessage: { required: requiredAttr, minLength, maxLength, pattern, min, max } } = formRestrictions[name] || {};
+    console.log(errors,'errors');
     return (
         <StyledInputBlock>
-            <Input
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                required={required}
-                {...input}
-            />
+            <Input name={name} placeholder={placeholder} ref={register(restrictions)} type={type} pattern={inputPattern} />
             {label && <label htmlFor={id}>
-                    {label}
-                </label>}
-            {hasError && <InputBlockError>{error}</InputBlockError>}
-            <InputBlockError>{error}</InputBlockError>
+                {label}
+            </label>}
+            {errors[name]?.type === 'required' && <InputBlockError>{requiredAttr}</InputBlockError>}
+            {errors[name]?.type === 'minLength' && <InputBlockError>{minLength}</InputBlockError>}
+            {errors[name]?.type === 'maxLength' && <InputBlockError>{maxLength}</InputBlockError>}
+            {errors[name]?.type === 'pattern' && <InputBlockError>{pattern}</InputBlockError>}
+            {errors[name]?.type === 'min' && <InputBlockError>{min}</InputBlockError>}
+            {errors[name]?.type === 'max' && <InputBlockError>{max}</InputBlockError>}
         </StyledInputBlock>
     );
 };

@@ -4,7 +4,9 @@ export interface IInputBlock {
     type?: string;
     label?: string;
     placeholder?: string;
-    required?: boolean;
-    hasError?: boolean;
-    error?: string;
+    checked?: boolean;
+    name: string;
+    register?: any;
+    errors?: any;
+    pattern?: string;
 }
