@@ -15,6 +15,7 @@ import LeaderboardPage from "../LeaderboardPage";
 import TournamentPage from "../TournamentPage";
 import PaymentSuccess from '../PaymentSuccess';
 import EmailTemplate from '../EmailTemplate';
+import AcceptInvitation from "../AcceptInvitation";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
       <Route exact path="/payment-success">
         <PaymentSuccess />
       </Route>
+     <Route exact path="/accept-invitation">
+         <AcceptInvitation />
+     </Route>
       <Route exact path="/email-template">
         <EmailTemplate />
       </Route>

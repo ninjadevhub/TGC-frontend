@@ -2,12 +2,15 @@ import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import InputBlock from '../InputBlock';
+import CheckboxBlock from '../CheckboxBlock';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
-import checkIcon from '../../images/check-icon.svg';
 import { device } from '../../styles/constants';
-import { Paragraph } from '../../styles/mixins';
+import { InputBlockError, Input, StyledInputBlock } from '../../styles/mixins';
 import SnackbarComponent from '../SnackBar';
+import { IRegistrationFormData } from './types';
+import { URL } from '../../utils/constants';
 
 const RegistrationFormWrapper = styled.form`
   display: flex;
@@ -43,104 +46,12 @@ const DateOfBirthBlock = styled.div`
   }
 `;
 
-const LabeledCheckbox = styled.div`
-  div {
-    display: flex;
-    flex-wrap: wrap;
-
-    input {
-      width: auto;
-      display: none;
-    }
-
-    label {
-      position: relative;
-      padding-left: 32px;
-      color: #fff;
-      font-family: 'San Francisco', Arial, sans-serif;
-      font-size: 12px;
-      line-height: 21px;
-
-      @media ${device.tablet} {
-       
-      }
-
-      &::before {
-        content: '';
-        width: 19px;
-        height: 19px;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        margin-right: 12px;
-        background-color: inherit;
-        border: 1px solid #B2212B;
-        vertical-align: middle;
-      }
-    }
-
-    input:checked + label {
-      &::after {
-        content: url(${checkIcon});
-        position: absolute;
-        left: 1px;
-        top: 3px;
-      }
-    }
-    
-    & > p {
-      top: 25px;
-    }
-  }
-`;
-
-const Input = styled.input`
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #B2212B;
-    background: inherit;
-    color: #fff;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    opacity: 0.7;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    font-family: inherit;
-    padding: 10px;
-    box-sizing: border-box;
-
-    ::placeholder {
-        color: #fff;
-    }
-`;
-
-const StyledInputBlock = styled.div`
-    font-family: 'San Francisco', Arial, sans-serif;
-    position: relative;
-`;
-
-
-const InputBlockError = styled(Paragraph)`
-    width: 100%;
-    position: absolute;
-    margin: 3px 0 0;
-    font-size: 10px;
-    line-height: 12px;
-    color: #fff;
-    opacity: 0.7;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    font-family: inherit;
-`;
-
 const RegistrationForm: React.FC = () => {
     const { register, handleSubmit, errors, watch } = useForm();
     const [snackbarOpened, setSnackbarOpened] = useState(false);
     const [isError, setIsError] = useState(false);
     const [snackbarText, setSnackbarText] = useState('');
+    const history = useHistory();
 
     const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
@@ -150,12 +61,12 @@ const RegistrationForm: React.FC = () => {
         setSnackbarOpened(false);
     };
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: IRegistrationFormData) => {
         const { email, password, confirmPassword, country, fullName, birthDate, birthMonth, birthYear } = data;
-        console.log(data);
         const dateOfBirth = `${birthMonth}-${birthDate}-${birthYear}`;
+        setSnackbarOpened(false);
 
-        axios.post('/auth/register', {
+        axios.post(URL.SIGN_UP_URL, {
             fullName,
             password,
             confirmPassword,
@@ -164,12 +75,13 @@ const RegistrationForm: React.FC = () => {
             country
         })
         .then(function (response) {
-            console.log(response, 'response');
+            setIsError(false);
             setSnackbarOpened(true);
             setSnackbarText('Successfully registered');
+            setTimeout(() => history.push('/tournament'), 3000);
         })
         .catch(function ({ response: { data } }) {
-            const { message } = JSON.parse(data);
+            const { message } = data;
             setSnackbarOpened(true);
             setIsError(true);
             setSnackbarText(message);
@@ -181,6 +93,7 @@ const RegistrationForm: React.FC = () => {
 
   return (
       <RegistrationFormWrapper onSubmit={handleSubmit(onSubmit)}>
+          <SnackbarComponent open={snackbarOpened} text={snackbarText} error={isError} handleClose={handleCloseSnackbar}/>
           <InputBlock name='fullName' placeholder='Full Name' register={register} errors={errors} />
           <InputBlock name='email' placeholder='Email' register={register} errors={errors} />
           <InputBlock name='password' type='password' placeholder='Password' register={register} errors={errors} />
@@ -204,18 +117,8 @@ const RegistrationForm: React.FC = () => {
             <InputBlock placeholder='Birth Month' name='birthMonth' register={register} errors={errors} />
             <InputBlock placeholder='Birth Year' name='birthYear' register={register} errors={errors} />
           </DateOfBirthBlock>
-          <LabeledCheckbox>
-              <StyledInputBlock>
-                  <Input type='checkbox' id='checkTerms' name='checkTerms' ref={register({ required: 'This field is required' })}  />
-                  <label htmlFor='checkTerms'>
-                      I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.
-                  </label>
-                  {errors.checkTerms && <InputBlockError>{errors.checkTerms.message}</InputBlockError>}
-              </StyledInputBlock>
-          </LabeledCheckbox>
-
+          <CheckboxBlock name='checkTerms' errors={errors} register={register} label='I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.' />
           <LoginRegisterButton type='submit'>Join Now</LoginRegisterButton>
-          <SnackbarComponent open={snackbarOpened} text={snackbarText} error={isError} handleClose={handleCloseSnackbar}/>
       </RegistrationFormWrapper>
   );
 }

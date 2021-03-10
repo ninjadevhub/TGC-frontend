@@ -88,5 +88,29 @@ export const formRestrictions: any = {
             maxLength: 'Wrong Birth Year',
             pattern: 'Only digits allowed'
         }
+    },
+    checkTerms: {
+        restrictions: {
+            required: true,
+        },
+        errorMessage: {
+            required: 'This field is required',
+        }
+    },
+    platformId: {
+        restrictions: {
+            required: true,
+        },
+        errorMessage: {
+            required: 'This field is required',
+        }
+    },
+    platform: {
+        restrictions: {
+            required: true,
+        },
+        errorMessage: {
+            required: 'This field is required',
+        }
     }
 }

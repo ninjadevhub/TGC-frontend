@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/index.scss';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
+require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>

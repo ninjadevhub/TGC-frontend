@@ -160,3 +160,53 @@ export const MenuItem = styled.li`
   color: #fff;
   margin-right: 50px;
 `;
+
+export const StyledInputBlock = styled.div`
+    font-family: 'San Francisco', Arial, sans-serif;
+    position: relative;
+`;
+
+export const Input = styled.input`
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #B2212B;
+    background: inherit;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    opacity: 0.7;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-family: inherit;
+    padding: 10px;
+    box-sizing: border-box;
+
+    ::placeholder {
+        color: #fff;
+    }
+`;
+
+export const InputBlockError = styled(Paragraph)`
+    width: 100%;
+    position: absolute;
+    margin: 3px 0 0;
+    font-size: 10px;
+    line-height: 12px;
+    color: #fff;
+    opacity: 0.7;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-family: inherit;
+`;
+
+export const Select = styled.div`
+  position: relative;
+`;
+
+export const SelectArrow = styled.img`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+`;

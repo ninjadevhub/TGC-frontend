@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import InputBlock from '../InputBlock';
+import SnackbarComponent from '../SnackBar';
+import { ILoginFormData } from './types';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import { device } from '../../styles/constants';
+import { URL } from '../../utils/constants';
 
-const RegistrationFormWrapper = styled.form`
+const LoginFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background: rgba(29, 29, 29, 0.7);
@@ -22,16 +28,10 @@ const RegistrationFormWrapper = styled.form`
   & > div {
     margin-bottom: 73px;
   }
-
-  & > div {
-    &:last-of-type {
-      margin-bottom: 3px;
-    }
-  }
 `;
 
 const ForgotPasswordLink = styled.a`
-  margin-bottom: 50px;
+  margin: -40px 0 50px;
   color: #DB4C4C;
   font-weight: 500;
   font-size: 10px;
@@ -40,13 +40,51 @@ const ForgotPasswordLink = styled.a`
 `;
 
 const LoginForm: React.FC = () => {
+    const [snackbarOpened, setSnackbarOpened] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [snackbarText, setSnackbarText] = useState('');
+    const history = useHistory();
+
+    const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackbarOpened(false);
+    };
+
+    const { register, handleSubmit, errors } = useForm();
+
+    const onSubmit = (data: ILoginFormData) => {
+        const { email, password  } = data;
+        setSnackbarOpened(false);
+
+        axios.post(URL.SIGN_IN_URL, {
+            email,
+            password
+        })
+        .then(function (response) {
+            setIsError(false);
+            setSnackbarOpened(true);
+            setSnackbarText('Successfully logged in');
+            setTimeout(() => history.push('/tournament'), 3000);
+        })
+        .catch(function ({ response: { data } }) {
+            const { message } = data;
+            setSnackbarOpened(true);
+            setIsError(true);
+            setSnackbarText(message);
+        });
+    };
+
   return (
-    <RegistrationFormWrapper>
-      <InputBlock name='email' placeholder='Email' type='email' />
-      <InputBlock name='password' placeholder='Password' type='password' />
+    <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <SnackbarComponent open={snackbarOpened} text={snackbarText} error={isError} handleClose={handleCloseSnackbar}/>
+      <InputBlock name='email' placeholder='Email' register={register} errors={errors} />
+      <InputBlock name='password' type='password' placeholder='Password' register={register} errors={errors} />
       <ForgotPasswordLink>Forgot Password?</ForgotPasswordLink>
-      <LoginRegisterButton>Login</LoginRegisterButton>
-    </RegistrationFormWrapper>
+      <LoginRegisterButton type='submit'>Login</LoginRegisterButton>
+    </LoginFormWrapper>
   );
 }
 
