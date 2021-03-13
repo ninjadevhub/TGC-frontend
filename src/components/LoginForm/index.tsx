@@ -63,14 +63,13 @@ const LoginForm: React.FC = () => {
             email,
             password
         })
-        .then(function (response) {
+        .then(function ({ data: { body: { message } } }) {
             setIsError(false);
             setSnackbarOpened(true);
-            setSnackbarText('Successfully logged in');
+            setSnackbarText(message);
             setTimeout(() => history.push('/tournament'), 3000);
         })
-        .catch(function ({ response: { data } }) {
-            const { message } = data;
+        .catch(function ({ response: { data: { body: { message } } } }) {
             setSnackbarOpened(true);
             setIsError(true);
             setSnackbarText(message);
