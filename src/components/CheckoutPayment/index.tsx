@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Paragraph, HeadingH2 } from '../../styles/mixins';
 import payPalLogo from '../../images/paypal-logo.svg';
@@ -8,6 +8,9 @@ import mastercardLogo from '../../images/mastercard.svg';
 import amexLogo from '../../images/amex.svg';
 import discoverLogo from '../../images/discover.svg';
 import { device } from '../../styles/constants';
+import PayPalButton from '../PaypalButton';
+import { setPaypalProvide } from '../../services/paypalService';
+import Spinner from '../Spinner';
 
 const StyledCheckoutPayment = styled.div`
   width: 100%;
@@ -44,9 +47,26 @@ const CheckoutPaymentSum = styled.div`
 `;
 
 const CheckoutPaymentButtonWrapper = styled.div`
+  min-height: 138px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  
+  & > div:not(:first-child) {
+    z-index: 0;
+  }
+`;
+
+const SpinnerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  z-index: 1;
 `;
 
 const CheckoutPaymentButton = styled.button<{ paymentType: string }>`
@@ -89,14 +109,35 @@ const CheckoutPaymentMethod = styled.div`
 `;
 
 const CheckoutPayment: React.FC = () => {
+    const [clientId, setClientId] = useState('');
+    const [currency, setCurrency] = useState('');
+    const [mode, setMode] = useState('');
+    const [showSpinner, setShowSpinner] = useState(true);
+    const [showPaypal, setShowPaypal] = useState(false);
+
+    useEffect( () => {
+        setPaypalProvide()
+            .then(function ({ data: { body: { paypal } } }) {
+                const { clientId, currency, mode } = paypal;
+                setClientId(clientId);
+                setCurrency(currency);
+                setMode(mode);
+                setShowPaypal(true);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    const afterScriptLoad = (isLoaded: boolean) => setShowSpinner(!isLoaded);
+
   return (
     <StyledCheckoutPayment>
         <CheckoutPaymentTitle>CHECKOUT</CheckoutPaymentTitle>
         <CheckoutPaymentSum>$50</CheckoutPaymentSum>
         <PaymentLabel>Duos #21Y2: $25/person for 2 players</PaymentLabel>
         <CheckoutPaymentButtonWrapper>
-          <CheckoutPaymentButton paymentType='applePay'/>
-          <CheckoutPaymentButton paymentType='payPal'/>
+            {showSpinner && <SpinnerWrapper><Spinner /></SpinnerWrapper>}
+            <CheckoutPaymentButton paymentType='applePay'/>
+            {showPaypal && <PayPalButton clientId={clientId} currencyCode={currency} mode={mode} callback={afterScriptLoad} />}
         </CheckoutPaymentButtonWrapper>
         <CheckoutPaymentMethod>
           <img src={mastercardLogo} alt='mastercard logo' />

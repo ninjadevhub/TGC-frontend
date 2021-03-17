@@ -121,7 +121,7 @@ const MainBanner: React.FC = () => {
             <TournamentImage src={tournaments} alt='tournaments' />
             <Announcement>Next Tournaments</Announcement>
             <AnnouncementDate>February 3, 2021</AnnouncementDate>
-            <LoginRegisterButton>Register Now</LoginRegisterButton>
+              <Link to='/payment'><LoginRegisterButton>Register Now</LoginRegisterButton></Link>
             <ViewAllEvents>View all events</ViewAllEvents>
           </BannerTextWrapper>
       </MainBannerWrapper>
