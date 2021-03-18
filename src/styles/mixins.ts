@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from './constants';
+import arrowIcon from "../images/arrow-down.svg";
 
 export const LayoutWrapper = styled.div<{ removeMobilePaddings?: boolean }>`
   display: flex;
@@ -113,16 +114,35 @@ export const ShowOnMobile = styled.div`
   }
 `;
 
+export const UserAccount = styled.p`
+  font-size: 16px;
+  line-height: 19px;
+  color: #fff;
+  margin: 0;
+
+  &::after {
+    content: url(${arrowIcon});
+    display: inline-block;
+    margin-left: 10px;
+  }
+`;
+
 export const UserContentWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
   position: absolute;
   top: 25px;
   right: 20px;
+  
+  > p {
+    margin-right: 20px;
+  }
 
   @media ${device.tablet} {
     position: relative;
+    top: 0;
     margin: 33px 0;
   }
 `;

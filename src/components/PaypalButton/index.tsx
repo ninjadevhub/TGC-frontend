@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createPaymentOrder } from '../../services/createPaymentOrder';
 import { executeOrder } from '../../services/executeOrder';
 import { IPayPalButton } from './types';
+import { getAuthToken } from '../../utils/helpers';
 
 declare global {
     interface Window {
@@ -50,7 +51,8 @@ export default function PayPalButton({ clientId, currencyCode, mode, callback }:
 
     const createOrder = async (data: any) => {
         try {
-            const { data: { body: { order: { id } } } } = await createPaymentOrder(tournamentId);
+            const token = getAuthToken();
+            const { data: { body: { order: { id } } } } = await createPaymentOrder(tournamentId, token);
             return id;
         } catch (err) {
             console.log(err, 'create order');
@@ -62,7 +64,8 @@ export default function PayPalButton({ clientId, currencyCode, mode, callback }:
         const { payerID: payerId, paymentID: paymentId } = data;
 
         try {
-            await executeOrder({ tournamentId, paymentId, payerId });
+            const token = getAuthToken();
+            await executeOrder({ tournamentId, paymentId, payerId, token });
             history.push('/payment-success');
         } catch(err) {
             console.log(err, 'create order');

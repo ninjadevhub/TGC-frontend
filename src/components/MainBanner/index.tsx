@@ -2,12 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
-    CtaButton,
     LayoutWrapper,
     SimpleButton,
-    ButtonWithBorder,
     ButtonWrapper,
-    ShowOnDesktop, ShowOnMobile
 } from '../../styles/mixins';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import warzoneLogo from '../../images/warzone-logo.png';
@@ -15,6 +12,7 @@ import tournaments from '../../images/tournaments.png';
 import city from '../../images/city.png';
 import bannerBackground from '../../images/banner-bg.jpg';
 import { device } from '../../styles/constants';
+import AuthHeader from '../AuthHeader';
 
 const StyledMainBanner = styled.div`
   min-height: 645px;
@@ -30,10 +28,6 @@ const StyledMainBanner = styled.div`
 
 const MainBannerWrapper = styled(LayoutWrapper)`
   flex-direction: column;
-`;
-
-const JoinTCGButton = styled(CtaButton)`
-  margin-right: 31px;
 `;
 
 const HomepageButtonWrapper = styled(ButtonWrapper)`
@@ -112,9 +106,7 @@ const MainBanner: React.FC = () => {
     <StyledMainBanner>
       <MainBannerWrapper>
           <HomepageButtonWrapper>
-              <ShowOnMobile><Link to='/registration'><CtaButton>Join</CtaButton></Link></ShowOnMobile>
-              <ShowOnDesktop><Link to='/registration'><JoinTCGButton>Join TGC Club</JoinTCGButton></Link></ShowOnDesktop>
-              <ShowOnDesktop><Link to='/login'><SimpleButton>Sign In</SimpleButton></Link></ShowOnDesktop>
+              <AuthHeader />
           </HomepageButtonWrapper>
           <BannerTextWrapper>
             <WarzoneLogo src={warzoneLogo} alt='warzone logo' />

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -9,6 +9,8 @@ import { ILoginFormData } from './types';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import { device } from '../../styles/constants';
 import { URL } from '../../utils/constants';
+import { useAuth } from '../../hooks/useAuth';
+import { getUserService } from '../../services/getUserService';
 
 const LoginFormWrapper = styled.form`
   display: flex;
@@ -44,6 +46,7 @@ const LoginForm: React.FC = () => {
     const [isError, setIsError] = useState(false);
     const [snackbarText, setSnackbarText] = useState('');
     const history = useHistory();
+    const auth = useAuth();
 
     const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
@@ -63,11 +66,23 @@ const LoginForm: React.FC = () => {
             email,
             password
         })
-        .then(function ({ data: { body: { message } } }) {
+        .then(function ({ data: { body: { message, jwt } } }) {
             setIsError(false);
             setSnackbarOpened(true);
             setSnackbarText(message);
-            setTimeout(() => history.push('/tournament'), 3000);
+            auth.signin(jwt);
+
+            const token = `${jwt.tokenType} ${jwt.accessToken}`;
+
+            getUserService(token)
+                .then(function ({ data: { body: { user } } }) {
+                    auth.setUser(user);
+                    setTimeout(() => history.push('/tournament'), 3000);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+
         })
         .catch(function ({ response: { data: { body: { message } } } }) {
             setSnackbarOpened(true);

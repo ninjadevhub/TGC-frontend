@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import {ProvideAuth} from './components/ProvideAuth';
 import './styles/index.scss';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
@@ -8,9 +9,11 @@ require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+      <ProvideAuth>
+        <Router>
+          <App />
+        </Router>
+      </ProvideAuth>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PageHeader, LayoutWrapper, Paragraph, PageHeaderBgImage, UserContentWrapper, MenuList, MenuItem } from '../../styles/mixins';
+import { PageHeader, LayoutWrapper, Paragraph, PageHeaderBgImage, MenuList, MenuItem } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import registration from '../../images/registration.png';
 import TotalPayment from '../../components/TotalPayment';
 import CheckoutPayment from '../../components/CheckoutPayment';
-import arrowIcon from '../../images/arrow-down.svg';
 import { device } from '../../styles/constants';
+import AuthHeader from '../../components/AuthHeader';
 
 const StyledPaymentPage = styled.div`
   min-height: 850px;
@@ -62,26 +62,11 @@ const PaymentPageText = styled(Paragraph)`
   text-align: center;
 `;
 
-const UserAccount = styled.p`
-  font-size: 16px;
-  line-height: 19px;
-  color: #fff;
-  margin: 0;
-
-  &::after {
-    content: url(${arrowIcon});
-    display: inline-block;
-    margin-left: 10px;
-  }
-`;
-
 const PaymentPage: React.FC = () => {
   return (
     <StyledPaymentPage>
       <PaymentPageWrapper removeMobilePaddings={true}>
-        <UserContentWrapper>
-          <UserAccount>Francis Green</UserAccount>
-        </UserContentWrapper>
+        <AuthHeader />
         <MenuList>
           <MenuItem>All Tournaments</MenuItem>
           <MenuItem>My Touraments</MenuItem>
@@ -93,7 +78,7 @@ const PaymentPage: React.FC = () => {
             <PaymentPageText>Feb 15, 2021 @ 6pm PT</PaymentPageText>
             <PaymentPageText>20 teams per division</PaymentPageText>
           </PaymentPageTextWrapper>
-          <TotalPayment title="$25/Person Entry Fee" sum="$ 1,600" sumFirst={false} isBig={false} />
+          <TotalPayment title='$25/Person Entry Fee' sum='$ 1,600' sumFirst={false} isBig={false} />
           <CheckoutPayment />
         </PaymentPageInnerWrapper>
       </PaymentPageWrapper>

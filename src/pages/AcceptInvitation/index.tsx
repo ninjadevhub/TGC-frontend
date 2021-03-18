@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HeadingH1, LayoutWrapper, Paragraph, UserContentWrapper, PageHeaderBgImage, MenuList, MenuItem } from '../../styles/mixins';
+import { HeadingH1, LayoutWrapper, Paragraph, PageHeaderBgImage, MenuList, MenuItem } from '../../styles/mixins';
 import city from '../../images/city.png';
 import playerBackground from '../../images/player-bg.png';
 import registration from '../../images/registration.png';
-import arrowIcon from '../../images/arrow-down.svg';
 import { device } from '../../styles/constants';
-import AcceptInvitationForm from "../../components/AcceptInvitationForm";
+import AcceptInvitationForm from '../../components/AcceptInvitationForm';
+import AuthHeader from '../../components/AuthHeader';
 
 const StyledRegistrationPage = styled.div`
   min-height: 1100px;
@@ -39,19 +39,6 @@ const PaymentPageText = styled(Paragraph)`
   text-align: center;
 `;
 
-const UserAccount = styled.p`
-  font-size: 16px;
-  line-height: 19px;
-  color: #fff;
-  margin: 0;
-
-  &::after {
-    content: url(${arrowIcon});
-    display: inline-block;
-    margin-left: 10px;
-  }
-`;
-
 const PaymentSuccessInnerWrapper = styled.div`
   width: 100%;
   position: relative;
@@ -72,9 +59,7 @@ const AcceptInvitation: React.FC = () => {
   return (
     <StyledRegistrationPage>
       <RegistrationPageWrapper removeMobilePaddings={true}>
-        <UserContentWrapper>
-          <UserAccount>Francis Green</UserAccount>
-        </UserContentWrapper>
+        <AuthHeader />
         <MenuList>
           <MenuItem>All Tournaments</MenuItem>
           <MenuItem>My Tournaments</MenuItem>

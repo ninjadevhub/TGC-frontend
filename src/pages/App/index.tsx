@@ -11,45 +11,47 @@ import Homepage from '../Homepage';
 import RegistrationPage from '../RegistrationPage';
 import LoginPage from '../LoginPage';
 import PaymentPage from '../PaymentPage';
-import LeaderboardPage from "../LeaderboardPage";
-import TournamentPage from "../TournamentPage";
+import LeaderboardPage from '../LeaderboardPage';
+import TournamentPage from '../TournamentPage';
 import PaymentSuccess from '../PaymentSuccess';
 import EmailTemplate from '../EmailTemplate';
-import AcceptInvitation from "../AcceptInvitation";
+import AcceptInvitation from '../AcceptInvitation';
+import PrivateRoute from '../../components/PrivateRoute';
+import PublicRoute from '../../components/PublicRoute';
 
 function App() {
   return (
     <div>
      <Header />
      <Switch>
-      <Route exact path="/">
+      <Route exact path='/'>
         <Homepage />
       </Route>
-      <Route exact path="/registration">
+      <PublicRoute exact path='/registration'>
         <RegistrationPage />
-      </Route>
-      <Route exact path="/login">
+      </PublicRoute>
+      <PublicRoute exact path='/login'>
         <LoginPage />
-      </Route>
-      <Route exact path="/payment">
+      </PublicRoute>
+      <PrivateRoute exact path='/payment'>
         <PaymentPage />
-      </Route>
-      <Route exact path="/leaderboard">
+      </PrivateRoute>
+      <PrivateRoute exact path='/leaderboard'>
         <LeaderboardPage />
-      </Route>
-      <Route exact path="/tournament">
+      </PrivateRoute>
+      <PrivateRoute exact path='/tournament'>
         <TournamentPage />
-      </Route>
-      <Route exact path="/payment-success">
+      </PrivateRoute>
+      <PrivateRoute exact path='/payment-success'>
         <PaymentSuccess />
-      </Route>
-     <Route exact path="/accept-invitation">
+      </PrivateRoute>
+     <PrivateRoute exact path='/accept-invitation'>
          <AcceptInvitation />
-     </Route>
-      <Route exact path="/email-template">
+     </PrivateRoute>
+      <PrivateRoute exact path='/email-template'>
         <EmailTemplate />
-      </Route>
-      <Redirect to="/404" />
+      </PrivateRoute>
+      <Redirect to='/404' />
     </Switch>
      <Footer />
      <ToTopButton />

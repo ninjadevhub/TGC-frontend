@@ -11,6 +11,7 @@ import { device } from '../../styles/constants';
 import PayPalButton from '../PaypalButton';
 import { setPaypalProvide } from '../../services/paypalService';
 import Spinner from '../Spinner';
+import { getAuthToken } from '../../utils/helpers';
 
 const StyledCheckoutPayment = styled.div`
   width: 100%;
@@ -116,7 +117,8 @@ const CheckoutPayment: React.FC = () => {
     const [showPaypal, setShowPaypal] = useState(false);
 
     useEffect( () => {
-        setPaypalProvide()
+        const token = getAuthToken();
+        setPaypalProvide(token)
             .then(function ({ data: { body: { paypal } } }) {
                 const { clientId, currency, mode } = paypal;
                 setClientId(clientId);
