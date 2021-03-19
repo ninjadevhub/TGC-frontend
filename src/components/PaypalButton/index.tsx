@@ -12,10 +12,8 @@ declare global {
     }
 }
 
-export default function PayPalButton({ clientId, currencyCode, mode, callback }: IPayPalButton) {
+export default function PayPalButton({ tournamentId, clientId, currencyCode, mode, callback }: IPayPalButton) {
     const [sdkReady, setSdkReady] = useState(false);
-    // TODO: change mocked tournamentId
-    const [tournamentId, ] = useState(1);
     const history = useHistory();
 
     const addPayPalSdk = () => {

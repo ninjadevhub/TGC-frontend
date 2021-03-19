@@ -1,5 +1,6 @@
 export interface ITournamentTable {
-  data: IMockedTableData;
+  data: ITournament[];
+  tableHead: string[];
   title?: string;
   styledHeader?: boolean;
   hasFooter?: boolean;
@@ -32,4 +33,18 @@ export interface ITableRow {
 export interface IStatus {
   status: StatusTypes;
   showIcons?: boolean;
+}
+
+export interface ITournament {
+  amountCurrency: string;
+  awardAmount: number;
+  costPerTeam: number;
+  createdAt: string;
+  endAt: string;
+  id: number;
+  isCompleted: boolean;
+  maxNumberOfTeams: number;
+  name: string;
+  startAt: string;
+  updatedAt: string;
 }

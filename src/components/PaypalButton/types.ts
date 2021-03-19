@@ -6,6 +6,7 @@ export interface IExecuteOrder {
 }
 
 export interface IPayPalButton {
+    tournamentId: number;
     clientId: string;
     currencyCode: string;
     mode: string;

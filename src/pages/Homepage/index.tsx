@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from "styled-components";
+import React, {useEffect, useState} from 'react';
+import styled from 'styled-components';
 import FeaturesBanner from '../../components/FeaturesBanner';
 import MainBanner from '../../components/MainBanner';
 import RecentWinners from '../../components/RecentWinners';
@@ -8,7 +8,8 @@ import banner2 from '../../images/banner2.jpg';
 import Description from '../../components/Description';
 import TournamentTable from '../../components/TournamentTable';
 import PlayersCarousel from '../../components/PlayersCarousel';
-import {mockedTableData} from "../../mockedData/indexTournaments";
+import { getTournaments } from '../../services/getTournaments';
+import { tableHead, URL } from '../../utils/constants';
 
 const TournamentTableWrapper = styled.div`
   padding: 70px 0;
@@ -16,6 +17,15 @@ const TournamentTableWrapper = styled.div`
 `;
 
 const Homepage: React.FC = () => {
+    const [allTournaments, setAllTournaments] = useState([]);
+
+    useEffect(() =>{
+        getTournaments(URL.GET_ALL_TOURNAMENTS, '')
+            .then(({ data: { body: { tournaments } } }) => {
+                setAllTournaments(tournaments);
+            })
+            .catch(err => console.log(err));
+        }, []);
   return (
     <main>
      <MainBanner />
@@ -27,7 +37,8 @@ const Homepage: React.FC = () => {
       text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio sem lacinia commodo ac egestas dapibus neque. Orci pulvinar mauris viverra auctor egestas cras amet. '
      />
      <TournamentTableWrapper>
-        <TournamentTable data={mockedTableData} title="Tournament List" />
+         {/*TODO: return this after fetching a real data*/}
+        <TournamentTable data={allTournaments} tableHead={tableHead} title='Tournament List' />
      </TournamentTableWrapper>
      <Description />
      <PlayersCarousel />

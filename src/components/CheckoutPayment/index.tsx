@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import { Paragraph, HeadingH2 } from '../../styles/mixins';
 import payPalLogo from '../../images/paypal-logo.svg';
 import applePayLogo from '../../images/apple-pay-logo.svg';
@@ -109,12 +110,17 @@ const CheckoutPaymentMethod = styled.div`
   }
 `;
 
+interface ILocationState {
+    tournamentId: number;
+}
+
 const CheckoutPayment: React.FC = () => {
     const [clientId, setClientId] = useState('');
     const [currency, setCurrency] = useState('');
     const [mode, setMode] = useState('');
     const [showSpinner, setShowSpinner] = useState(true);
     const [showPaypal, setShowPaypal] = useState(false);
+    const { state: { tournamentId } } = useLocation<ILocationState>();
 
     useEffect( () => {
         const token = getAuthToken();
@@ -139,7 +145,10 @@ const CheckoutPayment: React.FC = () => {
         <CheckoutPaymentButtonWrapper>
             {showSpinner && <SpinnerWrapper><Spinner /></SpinnerWrapper>}
             <CheckoutPaymentButton paymentType='applePay'/>
-            {showPaypal && <PayPalButton clientId={clientId} currencyCode={currency} mode={mode} callback={afterScriptLoad} />}
+            {showPaypal &&
+                <PayPalButton tournamentId={tournamentId} clientId={clientId}
+                              currencyCode={currency} mode={mode} callback={afterScriptLoad} />
+            }
         </CheckoutPaymentButtonWrapper>
         <CheckoutPaymentMethod>
           <img src={mastercardLogo} alt='mastercard logo' />

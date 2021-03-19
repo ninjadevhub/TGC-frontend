@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { LayoutWrapper, HeadingH2 } from '../../styles/mixins';
 import TournamentItem from '../TournamentItem';
-import { ITableRow, ITournamentTable } from './types';
+import { ITournamentTable, ITournament } from './types';
 import { device } from '../../styles/constants';
 
 const StyledTournamentTable = styled.div`
@@ -89,10 +89,9 @@ const MainBannerWrapper = styled(LayoutWrapper)`
 `;
 
 const TournamentTable = ({
-    title, styledHeader = false, hasFooter = false, footerButton,
-    data
+    data, title, styledHeader = false, hasFooter = false, footerButton,
+    tableHead
 }: ITournamentTable) => {
-  const { tableHead, tableBody } = data;
   return (
       <MainBannerWrapper removeMobilePaddings={true}>
         {title && <TournamentTableTitle>{title}</TournamentTableTitle>}
@@ -101,7 +100,7 @@ const TournamentTable = ({
             {tableHead.map((item, i) => <TournamentTableHeadItem key={i}>{item}</TournamentTableHeadItem>)}
           </TournamentTableHead>
           <TournamentTableBody>
-            {tableBody.map((tournamentData: ITableRow, id) => <TournamentItem key={id} {...tournamentData} />)}
+            {data.map((tournamentData: ITournament) => <TournamentItem key={tournamentData.id} {...tournamentData} />)}
           </TournamentTableBody>
           {hasFooter && (
               <TournamentTableFooter>

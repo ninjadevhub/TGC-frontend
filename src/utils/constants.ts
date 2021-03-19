@@ -6,4 +6,8 @@ export const URL = {
     PAYMENT_CREATE_ORDER: `${process.env.REACT_APP_BASE_URL}/payment/create-order`,
     PAYMENT_EXECUTE_ORDER: `${process.env.REACT_APP_BASE_URL}/payment/execute-order`,
     GET_USER_DATA: `${process.env.REACT_APP_BASE_URL}/users/info`,
+    GET_ALL_TOURNAMENTS: `${process.env.REACT_APP_BASE_URL}/payment/tournaments`,
+    GET_MY_TOURNAMENTS: `${process.env.REACT_APP_BASE_URL}/users/tournaments`,
 }
+
+export const tableHead: string[] = ['division', 'Tournament date', 'price', 'Teams', 'registration'];

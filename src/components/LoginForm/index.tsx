@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
             setIsError(false);
             setSnackbarOpened(true);
             setSnackbarText(message);
-            auth.signin(jwt);
+            setTimeout(() => auth.signin(jwt), 1000);
 
             const token = `${jwt.tokenType} ${jwt.accessToken}`;
 

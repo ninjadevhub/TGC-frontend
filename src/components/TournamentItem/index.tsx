@@ -1,13 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { CtaButton, Paragraph, ShowOnMobile, ShowOnDesktop } from '../../styles/mixins';
-import { ITableRow } from '../TournamentTable/types';
+import dateFormat from 'dateformat';
+import { CtaButton, Paragraph, ShowOnDesktop } from '../../styles/mixins';
+import { ITournament } from '../TournamentTable/types';
 import gameModeIcon from '../../images/game-mode.svg';
 import { IStatus } from '../TournamentTable/types';
 import australiaFlag from '../../images/australia-flag-square.svg';
 import trophyFlag from '../../images/trophy-transparent.svg';
 import rectangular from '../../images/rectangular.svg';
 import { device } from '../../styles/constants';
+import { Link } from 'react-router-dom';
 
 const TournamentRow = styled.div`
   display: flex;
@@ -152,12 +154,12 @@ const StatusBadge = styled.div`
   }
 `;
 
-const StatusIndicator = styled.span<{status: string}>`
+const StatusIndicator = styled.span<{status: boolean}>`
   display: inline-block;
   margin-right: 4px;
   width: 8px;
   height: 8px;
-  background: ${({ status }) => status === 'closed' ? '#5A5A5A' : status === 'completed' ? '#FACB27' :  status === 'live' ? '#DB4C4C' : '#249937'};
+  background: ${({ status }) => status ? '#5A5A5A' : 'green'};
   border-radius: 50%;
 `;
 
@@ -192,6 +194,11 @@ const TournamentTimelineButton = styled(CtaButton)<IStatus>`
     margin-left: 6px;
     height: 14px;
   }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const TournamentTimeline = styled.span`
@@ -219,37 +226,53 @@ const TournamentDetails = styled.div`
   }
 `;
 
+const getDays = (start: string, end: string) => {
+    const oneDay = 24 * 60 * 60 * 1000;
+    const date1 = start ? new Date(start).getTime() : new Date().getTime();
+    const date2 = new Date(end).getTime();
+    return Math.round(Math.abs((date2 - date1) / oneDay));
+}
+
 const TournamentItem = ({
-  status: tournamentStatus,
-  tournament: { name, label, date },
-  prize,
-  teamSize,
-  registrationInfo: { status, timeline, showIcons  }
-}: ITableRow) => {
+    amountCurrency,
+    awardAmount,
+    costPerTeam,
+    createdAt,
+    endAt,
+    id,
+    isCompleted,
+    maxNumberOfTeams,
+    name,
+    startAt,
+    updatedAt,
+}: ITournament) => {
+    const startsIn = getDays('', startAt);
   return (
     <TournamentRow>
-      <TournamentCellGameMode><img src={gameModeIcon} alt="game mode" /></TournamentCellGameMode>
+      <TournamentCellGameMode><img src={gameModeIcon} alt='game mode' /></TournamentCellGameMode>
       <TournamentCellInfo>
           <StatusBadgeWrapperStyled>
-            <StatusBadgeWrapper tournamentStatus={tournamentStatus} label={label} />
+            <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
           </StatusBadgeWrapperStyled>
         <TournamentName>{name}</TournamentName>
         <StatusWrapper>
             <ShowOnDesktop>
-                <StatusBadgeWrapper tournamentStatus={tournamentStatus} label={label} />
+                <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
             </ShowOnDesktop>
-          <TournamentDate>{date}</TournamentDate>
+          <TournamentDate>{dateFormat(createdAt, 'mediumDate')}</TournamentDate>
           <TournamentDetails>
-            <TournamentCellPrize>{prize}</TournamentCellPrize>
-            <TournamentCellTeamSize teamSize={teamSize}>{teamSize || '-'}</TournamentCellTeamSize>
+            <TournamentCellPrize>{amountCurrency === 'usd' ? '$' : '$'}{awardAmount}</TournamentCellPrize>
+            <TournamentCellTeamSize teamSize={maxNumberOfTeams}>{maxNumberOfTeams || '-'}</TournamentCellTeamSize>
           </TournamentDetails>
         </StatusWrapper>
       </TournamentCellInfo>
-      <TournamentCellPrize>{prize}</TournamentCellPrize>
-      <TournamentCellTeamSize teamSize={teamSize}>{teamSize || '-'}</TournamentCellTeamSize>
+      <TournamentCellPrize>{amountCurrency === 'usd' ? '$' : '$'} {awardAmount}</TournamentCellPrize>
+      <TournamentCellTeamSize teamSize={maxNumberOfTeams}>{maxNumberOfTeams || '-'}</TournamentCellTeamSize>
       <TournamentCellStatus>
-        <TournamentTimelineButton status={tournamentStatus} showIcons={showIcons}>{status}</TournamentTimelineButton>
-        <TournamentTimeline>{timeline}</TournamentTimeline>
+        <TournamentTimelineButton status='open' showIcons={false}>
+            <Link to={{pathname: '/payment', state: { tournamentId: id }}}>Register</Link>
+            </TournamentTimelineButton>
+        <TournamentTimeline>Starts in {startsIn} days</TournamentTimeline>
       </TournamentCellStatus>
     </TournamentRow>
   );
@@ -258,14 +281,14 @@ const TournamentItem = ({
 export default TournamentItem;
 
 interface IStatusBadgeWrapper {
-    tournamentStatus: string;
+    tournamentStatus: boolean;
     label: string;
 }
 
 const StatusBadgeWrapper = ({ tournamentStatus, label }: IStatusBadgeWrapper) => {
     return (
         <StatusBadge>
-            <StatusIndicator status={tournamentStatus} />{tournamentStatus === 'live' ? 'live' : label}
+            <StatusIndicator status={tournamentStatus} />{tournamentStatus ? 'live' : label}
         </StatusBadge>
     )
 }
