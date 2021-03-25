@@ -10,6 +10,7 @@ import trophyFlag from '../../images/trophy-transparent.svg';
 import rectangular from '../../images/rectangular.svg';
 import { device } from '../../styles/constants';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 const TournamentRow = styled.div`
   display: flex;
@@ -247,6 +248,10 @@ const TournamentItem = ({
     updatedAt,
 }: ITournament) => {
     const startsIn = getDays('', startAt);
+    const { saveTournament } = useAuth();
+    const saveTournamentId = () => {
+      saveTournament(id);
+    }
   return (
     <TournamentRow>
       <TournamentCellGameMode><img src={gameModeIcon} alt='game mode' /></TournamentCellGameMode>
@@ -270,7 +275,7 @@ const TournamentItem = ({
       <TournamentCellTeamSize teamSize={maxNumberOfTeams}>{maxNumberOfTeams || '-'}</TournamentCellTeamSize>
       <TournamentCellStatus>
         <TournamentTimelineButton status='open' showIcons={false}>
-            <Link to={{pathname: '/payment', state: { tournamentId: id }}}>Register</Link>
+            <Link to={{pathname: '/payment', state: { tournamentId: id }}} onClick={saveTournamentId}>Register</Link>
             </TournamentTimelineButton>
         <TournamentTimeline>Starts in {startsIn} days</TournamentTimeline>
       </TournamentCellStatus>

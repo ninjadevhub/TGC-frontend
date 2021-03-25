@@ -47,7 +47,6 @@ const LoginForm: React.FC = () => {
     const [snackbarText, setSnackbarText] = useState('');
     const history = useHistory();
     const auth = useAuth();
-
     const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -77,7 +76,14 @@ const LoginForm: React.FC = () => {
             getUserService(token)
                 .then(function ({ data: { body: { user } } }) {
                     auth.setUser(user);
-                    setTimeout(() => history.push('/tournament'), 3000);
+
+                    //TODO: 
+                    if(auth.tournamentId) {
+                      setTimeout(() => history.push('/payment'), 3000);
+                    } else {
+                      setTimeout(() => history.push('/tournament'), 3000);
+                    }
+                    //setTimeout(() => history.push('/tournament'), 3000);
                 })
                 .catch(function (err) {
                     console.log(err);

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+
 import InputBlock from '../InputBlock';
 import { Paragraph } from '../../styles/mixins';
-import { useForm } from 'react-hook-form';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import circledCheckIcon from '../../images/circled-check.svg';
 import arrowIcon from '../../images/arrow.svg';
 import { device } from '../../styles/constants';
-import { ILoginFormData } from '../LoginForm/types';
+import { IPaymentSuccessFormData } from './types';
 import { Select, SelectArrow } from '../../styles/mixins';
+import { useAuth } from '../../hooks/useAuth';
+import { inviteTeammates } from '../../services/inviteTeammates';
 
 const PaymentSuccessFormWrapper = styled.form`
   display: flex;
@@ -53,12 +56,37 @@ const SuccessMessage = styled(Paragraph)`
   line-height: 24px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
-
+ 
 const PaymentSuccessForm: React.FC = () => {
+  const { register, handleSubmit, errors, setValue } = useForm();
+  const { userData } = useAuth();
 
-    const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = (data: ILoginFormData) => console.log(data);
+  useEffect(() => {
+    if(userData) {
+      setValue('platform', userData.platformType)
+      setValue('platformId', userData.platformId)
+    }
+  }, [userData]);
+
+
+  const onSubmit = async (data: IPaymentSuccessFormData) => {
+    //TODO: 
+    try {
+      const res = await inviteTeammates({
+        creationToken: '', 
+        receivers: [data.email], 
+        teamName: data.teamName,
+        platformId: data.platformId, 
+        platformType: data.platform,
+        token: ''
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }; 
+
+ 
   return (
     <PaymentSuccessFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <SuccessMessageBlock>
@@ -67,11 +95,33 @@ const PaymentSuccessForm: React.FC = () => {
       </SuccessMessageBlock>
       <Select>
         <SelectArrow src={arrowIcon} alt='arrow icon' />
-        <InputBlock name='platform' placeholder='Your Platform Type' register={register} errors={errors} />
+        <InputBlock 
+          name='platform' 
+          placeholder='Your Platform Type' 
+          register={register} 
+          errors={errors} 
+        />
       </Select>
-      <InputBlock name='platformId' placeholder='Your Platform ID' register={register} errors={errors} />
-      <InputBlock name='email' placeholder='Email of Player #2' type='email' register={register} errors={errors} />
-      <LoginRegisterButton>Submit</LoginRegisterButton>
+      <InputBlock   
+        name='platformId' 
+        placeholder='Your Platform ID' 
+        register={register} 
+        errors={errors} 
+      />
+      <InputBlock 
+        name='email' 
+        placeholder='Email of Player #2' 
+        type='email' 
+        register={register} 
+        errors={errors} 
+      />
+      <InputBlock 
+        name='teamName' 
+        placeholder='Your Team Name' 
+        register={register} 
+        errors={errors} 
+      />
+      <LoginRegisterButton onClick={() => handleSubmit(onSubmit)}>Submit</LoginRegisterButton>
     </PaymentSuccessFormWrapper>
   );
 }

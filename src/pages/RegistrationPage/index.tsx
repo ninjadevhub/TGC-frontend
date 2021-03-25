@@ -18,7 +18,7 @@ const StyledRegistrationPage = styled.div`
 
   @media ${device.tablet} {
     min-height: 1625px;
-  }
+  } 
 `;
 
 const RegistrationPageWrapper = styled(LayoutWrapper)`

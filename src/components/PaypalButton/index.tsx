@@ -11,7 +11,7 @@ declare global {
         paypal: any;
     }
 }
-
+ 
 export default function PayPalButton({ tournamentId, clientId, currencyCode, mode, callback }: IPayPalButton) {
     const [sdkReady, setSdkReady] = useState(false);
     const history = useHistory();

@@ -7,4 +7,4 @@ export const setPaypalProvide = (token: string) => {
             'Authorization': `${token}`
         }
     })
-}
+} 

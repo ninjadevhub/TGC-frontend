@@ -188,6 +188,7 @@ export const StyledInputBlock = styled.div`
 
 export const Input = styled.input`
     width: 100%;
+    outline: none;
     border: none;
     border-bottom: 1px solid #B2212B;
     background: inherit;
@@ -204,6 +205,10 @@ export const Input = styled.input`
 
     ::placeholder {
         color: #fff;
+    }
+
+    :focus {
+      border-bottom: 1px solid #ff0f20
     }
 `;
 

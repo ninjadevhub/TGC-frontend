@@ -13,6 +13,7 @@ import PayPalButton from '../PaypalButton';
 import { setPaypalProvide } from '../../services/paypalService';
 import Spinner from '../Spinner';
 import { getAuthToken } from '../../utils/helpers';
+import { useAuth } from '../../hooks/useAuth';
 
 const StyledCheckoutPayment = styled.div`
   width: 100%;
@@ -26,7 +27,7 @@ const StyledCheckoutPayment = styled.div`
     width: 675px;
     padding-bottom: 40px;
   }
-`;
+`; 
 
 const CheckoutPaymentTitle = styled(HeadingH2)`
   text-align: center;
@@ -120,11 +121,12 @@ const CheckoutPayment: React.FC = () => {
     const [mode, setMode] = useState('');
     const [showSpinner, setShowSpinner] = useState(true);
     const [showPaypal, setShowPaypal] = useState(false);
-    const { state: { tournamentId } } = useLocation<ILocationState>();
+    const location = useLocation<ILocationState>();
+    const { tournamentId } = useAuth();
 
     useEffect( () => {
         const token = getAuthToken();
-        setPaypalProvide(token)
+        setPaypalProvide(token) 
             .then(function ({ data: { body: { paypal } } }) {
                 const { clientId, currency, mode } = paypal;
                 setClientId(clientId);
@@ -133,7 +135,7 @@ const CheckoutPayment: React.FC = () => {
                 setShowPaypal(true);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, []); 
 
     const afterScriptLoad = (isLoaded: boolean) => setShowSpinner(!isLoaded);
 
@@ -144,18 +146,22 @@ const CheckoutPayment: React.FC = () => {
         <PaymentLabel>Duos #21Y2: $25/person for 2 players</PaymentLabel>
         <CheckoutPaymentButtonWrapper>
             {showSpinner && <SpinnerWrapper><Spinner /></SpinnerWrapper>}
-            <CheckoutPaymentButton paymentType='applePay'/>
-            {showPaypal &&
-                <PayPalButton tournamentId={tournamentId} clientId={clientId}
-                              currencyCode={currency} mode={mode} callback={afterScriptLoad} />
-            }
+            {/* <CheckoutPaymentButton paymentType='applePay'/> */}
+            {showPaypal && <PayPalButton 
+                tournamentId={tournamentId} 
+                clientId={clientId}
+                currencyCode={currency} 
+                mode={mode} 
+                callback={afterScriptLoad} 
+              />
+            } 
         </CheckoutPaymentButtonWrapper>
-        <CheckoutPaymentMethod>
+        {/* <CheckoutPaymentMethod>
           <img src={mastercardLogo} alt='mastercard logo' />
           <img src={visaLogo} alt='visa logo' />
           <img src={discoverLogo} alt='discover logo' />
           <img src={amexLogo} alt='amex logo' />
-        </CheckoutPaymentMethod>
+        </CheckoutPaymentMethod> */}
     </StyledCheckoutPayment>
   );
 }

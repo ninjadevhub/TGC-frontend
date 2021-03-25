@@ -53,10 +53,20 @@ const TournamentPage: React.FC = () => {
       <PaymentPageWrapper removeMobilePaddings={true}>
           <AuthHeader />
           <TabsSwitcher titles={['All Tournaments', 'My Tournaments']}>
-              <TournamentTable data={allTournaments} tableHead={tableHead}
-                               styledHeader hasFooter footerButton='See my current tournaments' />
-              <TournamentTable data={myTournaments} tableHead={tableHead}
-                               styledHeader hasFooter footerButton='Check out all tournaments' />
+              <TournamentTable 
+                data={allTournaments} 
+                tableHead={tableHead}
+                styledHeader 
+                hasFooter 
+                footerButton='See my current tournaments' 
+              />
+              <TournamentTable 
+                data={myTournaments} 
+                tableHead={tableHead}
+                styledHeader 
+                hasFooter 
+                footerButton='Check out all tournaments' 
+              />
           </TabsSwitcher>
       </PaymentPageWrapper>
     </StyledPaymentPage>

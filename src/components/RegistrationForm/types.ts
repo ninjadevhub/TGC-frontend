@@ -3,6 +3,7 @@ export interface IRegistrationFormData {
     password: string;
     confirmPassword: string;
     country: string;
+    state: string;
     fullName: string;
     birthDate: string;
     birthMonth: string;

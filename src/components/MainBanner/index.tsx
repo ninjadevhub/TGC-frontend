@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
     LayoutWrapper,
     SimpleButton,
     ButtonWrapper,
+    MenuList,
+    MenuItem
 } from '../../styles/mixins';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import warzoneLogo from '../../images/warzone-logo.png';
@@ -13,6 +15,8 @@ import city from '../../images/city.png';
 import bannerBackground from '../../images/banner-bg.jpg';
 import { device } from '../../styles/constants';
 import AuthHeader from '../AuthHeader';
+import { useAuth } from '../../hooks/useAuth';
+
 
 const StyledMainBanner = styled.div`
   min-height: 645px;
@@ -101,20 +105,44 @@ const TournamentImage = styled.img`
   }
 `;
 
-const MainBanner: React.FC = () => {
+interface MainBannerProps {
+  onViewAllEventsClick: () => void;
+}
+
+const MainBanner: React.FC<MainBannerProps> = ({ onViewAllEventsClick }) => {
+  let { userData } = useAuth();
+  const history = useHistory();
+
   return (
     <StyledMainBanner>
       <MainBannerWrapper>
           <HomepageButtonWrapper>
-              <AuthHeader />
+            {
+              userData &&
+              <MenuList>
+                <MenuItem onClick={() => history.push('/tournament')}>All Tournaments</MenuItem>
+                <MenuItem>My Tournaments</MenuItem>
+              </MenuList>
+            }
+            <AuthHeader />
           </HomepageButtonWrapper>
+         
           <BannerTextWrapper>
             <WarzoneLogo src={warzoneLogo} alt='warzone logo' />
             <TournamentImage src={tournaments} alt='tournaments' />
             <Announcement>Next Tournaments</Announcement>
             <AnnouncementDate>February 3, 2021</AnnouncementDate>
-              <Link to='/tournament'><LoginRegisterButton>Register Now</LoginRegisterButton></Link>
-            <ViewAllEvents>View all events</ViewAllEvents>
+            {/* TODO: add real id in homepage integration task */}
+            <Link 
+              to={{ 
+                  pathname: '/registration', 
+                  state: { tournamentId: '1', from: window.location.pathname } 
+              }}>
+                <LoginRegisterButton>Register Now</LoginRegisterButton>
+            </Link>
+            <ViewAllEvents onClick={onViewAllEventsClick}>
+              View all events
+            </ViewAllEvents> 
           </BannerTextWrapper>
       </MainBannerWrapper>
     </StyledMainBanner>

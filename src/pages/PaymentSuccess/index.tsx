@@ -56,7 +56,7 @@ const PaymentSuccessInnerWrapper = styled.div`
 `;
 
 const PaymentSuccess: React.FC = () => {
-  return (
+  return ( 
     <StyledRegistrationPage>
       <RegistrationPageWrapper removeMobilePaddings={true}>
         <AuthHeader />
@@ -70,8 +70,8 @@ const PaymentSuccess: React.FC = () => {
           <PaymentPageTextWrapper>
             <PaymentPageText>Feb 15, 2021 @ 6pm PT</PaymentPageText>
             <PaymentPageText>20 teams per division</PaymentPageText>
-          </PaymentPageTextWrapper>
-          <PaymentSuccessForm />
+          </PaymentPageTextWrapper> 
+          <PaymentSuccessForm />  
         </PaymentSuccessInnerWrapper>
       </RegistrationPageWrapper>
     </StyledRegistrationPage>

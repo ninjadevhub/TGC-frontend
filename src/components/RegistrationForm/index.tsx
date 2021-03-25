@@ -1,16 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+
 import InputBlock from '../InputBlock';
 import CheckboxBlock from '../CheckboxBlock';
 import { LoginRegisterButton } from '../../styles/login-registration-mixins';
 import { device } from '../../styles/constants';
-import { InputBlockError, Input, StyledInputBlock } from '../../styles/mixins';
+import { InputBlockError, Input, StyledInputBlock, Select, SelectArrow } from '../../styles/mixins';
 import SnackbarComponent from '../SnackBar';
 import { IRegistrationFormData } from './types';
-import { URL } from '../../utils/constants';
+import { URL, usaStates } from '../../utils/constants';  
+import arrowIcon from '../../images/arrow.svg';
+import { CustomSelect } from '../CustomSelect';
+
 
 const RegistrationFormWrapper = styled.form`
   display: flex;
@@ -47,22 +51,36 @@ const DateOfBirthBlock = styled.div`
 `;
 
 const RegistrationForm: React.FC = () => {
-    const { register, handleSubmit, errors, watch } = useForm();
+    const { register, handleSubmit, errors, watch, setValue } = useForm();
     const [snackbarOpened, setSnackbarOpened] = useState(false);
     const [isError, setIsError] = useState(false);
     const [snackbarText, setSnackbarText] = useState('');
     const history = useHistory();
 
+    useEffect(() => {
+      setValue('country', "USA");
+    }, []);
+
     const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
-        }
+        } 
 
         setSnackbarOpened(false);
     };
 
     const onSubmit = (data: IRegistrationFormData) => {
-        const { email, password, confirmPassword, country, fullName, birthDate, birthMonth, birthYear } = data;
+        const { 
+          email, 
+          password, 
+          confirmPassword, 
+          country, 
+          state,
+          fullName, 
+          birthDate, 
+          birthMonth, 
+          birthYear 
+        } = data;
         const dateOfBirth = `${birthMonth}-${birthDate}-${birthYear}`;
         setSnackbarOpened(false);
 
@@ -72,7 +90,8 @@ const RegistrationForm: React.FC = () => {
             confirmPassword,
             email,
             dateOfBirth,
-            country
+            country,
+            state
         })
         .then(function ({ data: { body: { message } } }) {
             setIsError(false);
@@ -92,7 +111,12 @@ const RegistrationForm: React.FC = () => {
 
   return (
       <RegistrationFormWrapper onSubmit={handleSubmit(onSubmit)}>
-          <SnackbarComponent open={snackbarOpened} text={snackbarText} error={isError} handleClose={handleCloseSnackbar}/>
+          <SnackbarComponent 
+            open={snackbarOpened} 
+            text={snackbarText} 
+            error={isError} 
+            handleClose={handleCloseSnackbar}
+          />
           <InputBlock name='fullName' placeholder='Full Name' register={register} errors={errors} />
           <InputBlock name='email' placeholder='Email' register={register} errors={errors} />
           <InputBlock name='password' type='password' placeholder='Password' register={register} errors={errors} />
@@ -110,13 +134,77 @@ const RegistrationForm: React.FC = () => {
               {errors.confirmPassword && <InputBlockError>{errors.confirmPassword.message}</InputBlockError>}
               {errors.confirmPassword?.type === 'required' && <InputBlockError>This field is required</InputBlockError>}
           </StyledInputBlock>
-          <InputBlock name='country' placeholder='Country' register={register} errors={errors} />
+
+          <CustomSelect toggler={() => (
+             <Select>
+                <SelectArrow src={arrowIcon} alt='arrow icon' />
+                <InputBlock  
+                  name='country' 
+                  placeholder='Country' 
+                  register={register} 
+                  errors={errors} 
+                  readOonly
+                />
+              </Select>
+          )}>
+            <CustomSelect.Item onClick={() => setValue('country', 'USA')}>
+              USA
+            </CustomSelect.Item>
+          </CustomSelect>
+          
+          <CustomSelect toggler={() => (
+            <Select>
+                  <SelectArrow src={arrowIcon} alt='arrow icon' />
+                  <InputBlock 
+                    name='state' 
+                    placeholder='State' 
+                    register={register} 
+                    errors={errors} 
+                    readOonly
+                  />
+             </Select>
+          )}>
+            {
+              usaStates.map((state, i) => (
+                <CustomSelect.Item 
+                  key={`state-item-${i}`} 
+                  onClick={() => setValue('state', state)}
+                >
+                  {state}
+                </CustomSelect.Item>
+              ))
+            }
+          </CustomSelect>
+
+          {/* <Select>
+            <SelectArrow src={arrowIcon} alt='arrow icon' />
+            <InputBlock 
+              name='country' 
+              placeholder='Country' 
+              register={register} 
+              errors={errors} 
+            />
+          </Select> */}
+          {/* <Select>
+            <SelectArrow src={arrowIcon} alt='arrow icon' />
+            <InputBlock 
+              name='state' 
+              placeholder='State' 
+              register={register} 
+              errors={errors} 
+            />
+          </Select> */}
           <DateOfBirthBlock>
             <InputBlock placeholder='Birth Date' name='birthDate' register={register} errors={errors} />
             <InputBlock placeholder='Birth Month' name='birthMonth' register={register} errors={errors} />
             <InputBlock placeholder='Birth Year' name='birthYear' register={register} errors={errors} />
-          </DateOfBirthBlock>
-          <CheckboxBlock name='checkTerms' errors={errors} register={register} label='I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.' />
+          </DateOfBirthBlock> 
+          <CheckboxBlock 
+            name='checkTerms' 
+            errors={errors} 
+            register={register} 
+            label='I agree to the Terms of Use and I have read and acknowledge the Privacy Policy.' 
+          />
           <LoginRegisterButton type='submit'>Join Now</LoginRegisterButton>
       </RegistrationFormWrapper>
   );

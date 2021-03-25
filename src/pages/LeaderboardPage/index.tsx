@@ -55,7 +55,7 @@ const CheckoutPaymentTitle = styled(HeadingH2)`
   text-align: center;
   margin: 44px 0 17px;
 `;
-
+ 
 const LeaderboardPage: React.FC = () => {
   return (
     <StyledPaymentPage>

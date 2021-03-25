@@ -5,6 +5,8 @@ import { useProvideAuth } from '../../hooks/useProvideAuth';
 const initialContext = {
     userData: null,
     userToken: null,
+    tournamentId: 1,
+    saveTournament: () => null,
     signin: () => null,
     setUser: () => null,
     signout: () => null
