@@ -9,8 +9,9 @@ import australiaFlag from '../../images/australia-flag-square.svg';
 import trophyFlag from '../../images/trophy-transparent.svg';
 import rectangular from '../../images/rectangular.svg';
 import { device } from '../../styles/constants';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { toPounds } from '../../utils/helpers';
 
 const TournamentRow = styled.div`
   display: flex;
@@ -93,7 +94,7 @@ const TournamentCellStatus = styled(TournamentCell)`
   align-items: center;
 
   @media ${device.tablet} {
-    flex-direction: row;
+    flex-direction: column;
     flex-basis: 27%;
   }
 `;
@@ -206,7 +207,7 @@ const TournamentTimeline = styled.span`
   font-weight: 600;
   font-size: 10px;
   line-height: 12px;
-  margin-left: 11px;
+  margin-top: 5px;
   font-family: 'San Francisco', Arial, sans-serif;
 `;
 
@@ -241,46 +242,84 @@ const TournamentItem = ({
     createdAt,
     endAt,
     id,
+    isStarted,
+    inProgress,
     isCompleted,
     maxNumberOfTeams,
     name,
     startAt,
     updatedAt,
 }: ITournament) => {
+    const history = useHistory();
     const startsIn = getDays('', startAt);
     const { saveTournament } = useAuth();
-    const saveTournamentId = () => {
+
+
+    const handleRegister = () => {
       saveTournament(id);
+      history.push({pathname: '/payment', state: { tournamentId: id }});
     }
-  return (
-    <TournamentRow>
-      <TournamentCellGameMode><img src={gameModeIcon} alt='game mode' /></TournamentCellGameMode>
-      <TournamentCellInfo>
-          <StatusBadgeWrapperStyled>
-            <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
-          </StatusBadgeWrapperStyled>
-        <TournamentName>{name}</TournamentName>
-        <StatusWrapper>
-            <ShowOnDesktop>
-                <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
-            </ShowOnDesktop>
-          <TournamentDate>{dateFormat(createdAt, 'mediumDate')}</TournamentDate>
-          <TournamentDetails>
-            <TournamentCellPrize>{amountCurrency === 'usd' ? '$' : '$'}{awardAmount}</TournamentCellPrize>
-            <TournamentCellTeamSize teamSize={maxNumberOfTeams}>{maxNumberOfTeams || '-'}</TournamentCellTeamSize>
-          </TournamentDetails>
-        </StatusWrapper>
-      </TournamentCellInfo>
-      <TournamentCellPrize>{amountCurrency === 'usd' ? '$' : '$'} {awardAmount}</TournamentCellPrize>
-      <TournamentCellTeamSize teamSize={maxNumberOfTeams}>{maxNumberOfTeams || '-'}</TournamentCellTeamSize>
-      <TournamentCellStatus>
-        <TournamentTimelineButton status='open' showIcons={false}>
-            <Link to={{pathname: '/payment', state: { tournamentId: id }}} onClick={saveTournamentId}>Register</Link>
-            </TournamentTimelineButton>
-        <TournamentTimeline>Starts in {startsIn} days</TournamentTimeline>
-      </TournamentCellStatus>
-    </TournamentRow>
-  );
+
+    const disableRegister = (): boolean => {
+      if(isStarted === false && isCompleted === false) {
+        return false;
+      } else if(isStarted || inProgress || isCompleted) {
+        return true
+      } else {
+        return false 
+      }
+    };
+
+    return (
+      <TournamentRow>
+        <TournamentCellGameMode><img src={gameModeIcon} alt='game mode' /></TournamentCellGameMode>
+        <TournamentCellInfo>
+            <StatusBadgeWrapperStyled>
+              <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
+            </StatusBadgeWrapperStyled>
+          <TournamentName>{name}</TournamentName>
+          <StatusWrapper>
+              <ShowOnDesktop>
+                  <StatusBadgeWrapper tournamentStatus={isCompleted} label='open' />
+              </ShowOnDesktop>
+            <TournamentDate>{dateFormat(createdAt, 'mediumDate')}</TournamentDate>
+            <TournamentDetails>
+              <TournamentCellPrize>
+                {amountCurrency === 'usd' ? '$' : '$'}{toPounds(awardAmount)}
+              </TournamentCellPrize>
+              <TournamentCellTeamSize teamSize={maxNumberOfTeams}>
+                {maxNumberOfTeams || '-'}
+              </TournamentCellTeamSize> 
+            </TournamentDetails>
+          </StatusWrapper>
+        </TournamentCellInfo>
+        <TournamentCellPrize>
+          {amountCurrency === 'usd' ? '$' : '$'} {toPounds(awardAmount)}
+        </TournamentCellPrize>
+        <TournamentCellTeamSize teamSize={maxNumberOfTeams}>
+          {maxNumberOfTeams || '-'}
+        </TournamentCellTeamSize>
+
+        <TournamentCellPrize>
+          Call of Duty: Warzone
+        </TournamentCellPrize>
+        <TournamentCellPrize>
+          Singles
+        </TournamentCellPrize>
+
+        <TournamentCellStatus>
+          <TournamentTimelineButton  
+            status={'open'} 
+            showIcons={false}
+            disabled={disableRegister()}
+            onClick={handleRegister}
+          >
+            Register
+          </TournamentTimelineButton>
+          <TournamentTimeline>Starts in {startsIn} days</TournamentTimeline>
+        </TournamentCellStatus>
+      </TournamentRow>
+    );
 }
 
 export default TournamentItem;

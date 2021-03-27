@@ -8,6 +8,7 @@ import TotalPayment from '../../components/TotalPayment';
 import CheckoutPayment from '../../components/CheckoutPayment';
 import { device } from '../../styles/constants';
 import AuthHeader from '../../components/AuthHeader';
+import { useHistory } from 'react-router';
 
 const StyledPaymentPage = styled.div`
   min-height: 850px;
@@ -63,13 +64,16 @@ const PaymentPageText = styled(Paragraph)`
 `;
 
 const PaymentPage: React.FC = () => {
+
+  const history = useHistory();
+
   return (
     <StyledPaymentPage>
       <PaymentPageWrapper removeMobilePaddings={true}>
         <AuthHeader />
         <MenuList>
-          <MenuItem>All Tournaments</MenuItem>
-          <MenuItem>My Touraments</MenuItem>
+          <MenuItem onClick={() => history.push('/tournament')}>All Tournaments</MenuItem>
+          <MenuItem onClick={() => history.push('/tournament')}>My Touraments</MenuItem>
         </MenuList>
         <PaymentPageInnerWrapper>
           <PageHeaderBgImage src={registration} alt='tgc club background' />

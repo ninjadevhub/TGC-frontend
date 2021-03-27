@@ -130,5 +130,24 @@ export const formRestrictions: any = {
         errorMessage: {
             required: 'This field is required',
         }
+    },
+    teammate: {
+        restrictions: {
+            pattern: emailRgx,
+            required: false,
+        },
+        errorMessage: {
+            required: 'This field is required',
+            pattern: 'Invalid email, it should be like this format anyone@domain.any',
+        }
+    },
+    addedTeammate: {
+        restrictions: {
+            required: false,
+        },
+        errorMessage: {
+            required: 'This field is required',
+            pattern: 'Invalid email, it should be like this format anyone@domain.any',
+        }
     }
 }

@@ -3,9 +3,6 @@ import TabTitle from '../TabTitle'
 import styled from 'styled-components';
 import { device } from '../../styles/constants';
 
-type Props = {
-    children: ReactElement[]
-}
 
 const TabsList = styled.ul`
   display: flex;
@@ -40,14 +37,19 @@ const TabsList = styled.ul`
   }
 `;
 
-const Tabs: React.FC<Props> = ({ children }) => {
-    const [selectedTab, setSelectedTab] = useState(0)
+type Props = {
+  children: ReactElement[];
+  selectedTab: number;
+  setSelectedTab: (index: number) => void;
+}
+
+const Tabs: React.FC<Props> = ({ children, selectedTab, setSelectedTab }) => {
 
     return (
         <div>
             <TabsList>
                 {children.map((item, index) => (
-                    <TabTitle
+                    <TabTitle 
                         key={index}
                         title={item.props.title}
                         index={index}

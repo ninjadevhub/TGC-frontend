@@ -5,6 +5,7 @@ export interface ITournamentTable {
   styledHeader?: boolean;
   hasFooter?: boolean;
   footerButton?: string;
+  onFooterButtonClick?: () => void;
 }
 
 export interface IMockedTableData {
@@ -42,6 +43,8 @@ export interface ITournament {
   createdAt: string;
   endAt: string;
   id: number;
+  isStarted: boolean;
+  inProgress: boolean;
   isCompleted: boolean;
   maxNumberOfTeams: number;
   name: string;

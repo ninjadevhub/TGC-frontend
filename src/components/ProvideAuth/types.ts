@@ -16,8 +16,8 @@ export interface IUserToken {
 export type ContextProps = {
     userData: IUserData | null,
     userToken: IUserToken | null,
-    tournamentId: number,
-    saveTournament: (id: number) => void,
+    tournamentId: number | null,
+    saveTournament: (id: number | null) => void,
     setUser: (data: IUserData) => void,
     signin: (token: IUserToken) => void,
     signout: () => void,

@@ -12,7 +12,8 @@ const InputBlock = ({
     register, 
     errors, 
     pattern: inputPattern,
-    readOonly = false
+    readOnly = false,
+    value
 }: IInputBlock) => {
     const { restrictions, errorMessage: { required: requiredAttr, minLength, maxLength, pattern, min, max } } = formRestrictions[name] || {};
 
@@ -24,7 +25,8 @@ const InputBlock = ({
                 ref={register(restrictions)} 
                 type={type} 
                 pattern={inputPattern}
-                readOnly={readOonly} 
+                readOnly={readOnly} 
+                value={value}
             />
             {label && <label htmlFor={id}>{label}</label>}
             {errors[name]?.type === 'required' && <InputBlockError>{requiredAttr}</InputBlockError>}

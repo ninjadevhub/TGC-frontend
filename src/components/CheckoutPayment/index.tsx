@@ -124,6 +124,7 @@ const CheckoutPayment: React.FC = () => {
     const location = useLocation<ILocationState>();
     const { tournamentId } = useAuth();
 
+    
     useEffect( () => {
         const token = getAuthToken();
         setPaypalProvide(token) 
@@ -147,7 +148,7 @@ const CheckoutPayment: React.FC = () => {
         <CheckoutPaymentButtonWrapper>
             {showSpinner && <SpinnerWrapper><Spinner /></SpinnerWrapper>}
             {/* <CheckoutPaymentButton paymentType='applePay'/> */}
-            {showPaypal && <PayPalButton 
+            {showPaypal && <PayPalButton  
                 tournamentId={tournamentId} 
                 clientId={clientId}
                 currencyCode={currency} 

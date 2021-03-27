@@ -7,7 +7,7 @@ export interface IPaymentSuccessFormData {
 
 export interface IIviteTeamMate {
     creationToken: string; 
-    receivers: string[]; 
+    receivers?: string[]; 
     teamName: string;
     platformId: string; 
     platformType: string;

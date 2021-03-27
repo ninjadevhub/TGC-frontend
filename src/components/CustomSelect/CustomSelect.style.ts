@@ -30,6 +30,7 @@ export const SelectItem = styled.div`
     color: #fff;
     opacity: .7;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
         opacity: .9;

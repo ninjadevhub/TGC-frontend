@@ -7,6 +7,7 @@ import playerBackground from '../../images/player-bg.png';
 import tgcClub from '../../images/tgc-club.png';
 import { device } from '../../styles/constants';
 import AuthHeader from '../../components/AuthHeader';
+import { useHistory } from 'react-router';
 
 const StyledRegistrationPage = styled.div`
   min-height: 1100px;
@@ -56,13 +57,16 @@ const PaymentSuccessInnerWrapper = styled.div`
 `;
 
 const PaymentSuccess: React.FC = () => {
+
+  const history = useHistory();
+
   return ( 
     <StyledRegistrationPage>
       <RegistrationPageWrapper removeMobilePaddings={true}>
         <AuthHeader />
         <MenuList>
-          <MenuItem>All Tournaments</MenuItem>
-          <MenuItem>My Tournaments</MenuItem>
+          <MenuItem onClick={() => history.push('/tournament')}>All Tournaments</MenuItem>
+          <MenuItem onClick={() => history.push('/tournament')}>My Tournaments</MenuItem>
         </MenuList>
         <PaymentSuccessInnerWrapper>
           <PageHeaderBgImage src={tgcClub} alt='tgc club background' />

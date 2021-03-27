@@ -16,6 +16,7 @@ const StyledTabTitle = styled.li<{ isActive: boolean }>`
     background-color: transparent;
     color: inherit;
     padding: 0;
+    cursor: pointer;
   }
 `;
 

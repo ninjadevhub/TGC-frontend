@@ -47,6 +47,7 @@ const LoginForm: React.FC = () => {
     const [snackbarText, setSnackbarText] = useState('');
     const history = useHistory();
     const auth = useAuth();
+    
     const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;

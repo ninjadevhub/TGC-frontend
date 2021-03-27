@@ -22,4 +22,5 @@ export const DropdownItem = styled(SimpleButton)`
     outline: none;
     border: none;
     text-align: left;
+    white-space: nowrap;
 `;

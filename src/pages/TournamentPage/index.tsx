@@ -29,6 +29,7 @@ const PaymentPageWrapper = styled(LayoutWrapper)`
 const TournamentPage: React.FC = () => {
     const [allTournaments, setAllTournaments] = useState([]);
     const [myTournaments, setMyTournaments] = useState([]);
+    const [activeTab, setActiveTab] = useState(0);
 
     useEffect(() => {
         const token = getAuthToken();
@@ -47,25 +48,31 @@ const TournamentPage: React.FC = () => {
             .catch(err => console.log(err));
 
     }, []);
-
+    
   return (
     <StyledPaymentPage>
       <PaymentPageWrapper removeMobilePaddings={true}>
-          <AuthHeader />
-          <TabsSwitcher titles={['All Tournaments', 'My Tournaments']}>
+          <AuthHeader />  
+          <TabsSwitcher 
+            titles={['All Tournaments', 'My Tournaments']} 
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            > 
               <TournamentTable 
                 data={allTournaments} 
                 tableHead={tableHead}
                 styledHeader 
                 hasFooter 
-                footerButton='See my current tournaments' 
+                footerButton='See my current tournaments'
+                onFooterButtonClick={() => setActiveTab(1)}
               />
               <TournamentTable 
                 data={myTournaments} 
                 tableHead={tableHead}
                 styledHeader 
                 hasFooter 
-                footerButton='Check out all tournaments' 
+                footerButton='Check out all tournaments'
+                onFooterButtonClick={() => setActiveTab(0)}
               />
           </TabsSwitcher>
       </PaymentPageWrapper>

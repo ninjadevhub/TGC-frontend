@@ -9,5 +9,6 @@ export interface IInputBlock {
     register?: any;
     errors?: any;
     pattern?: string;
-    readOonly?: boolean;
+    readOnly?: boolean;
+    value?: string;
 }

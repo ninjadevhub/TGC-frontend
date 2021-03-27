@@ -16,4 +16,8 @@ export const getAuthToken = () => {
     const { tokenType, accessToken } = JSON.parse(userToken);
 
     return `${tokenType} ${accessToken}`;
+};
+
+export const toPounds = (cents: number): number => {
+    return cents / 100;
 }

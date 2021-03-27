@@ -143,7 +143,7 @@ const RegistrationForm: React.FC = () => {
                   placeholder='Country' 
                   register={register} 
                   errors={errors} 
-                  readOonly
+                  readOnly
                 />
               </Select>
           )}>
@@ -160,7 +160,7 @@ const RegistrationForm: React.FC = () => {
                     placeholder='State' 
                     register={register} 
                     errors={errors} 
-                    readOonly
+                    readOnly
                   />
              </Select>
           )}>
